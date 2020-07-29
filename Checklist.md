@@ -1,5 +1,7 @@
 # Checklist:
 
+## Objetivos Principales
+
 - **main.py**
     + Debe leer los argumentos de la consola.
     + Ejecutar JS
@@ -7,10 +9,10 @@
     + Detectar Ruby y Bash
 
 - **Gramática**
-    + JS
-        + Comentarios simples o múltiples (// o /* */)    
-    + Bash
-    + Ruby
+    + JS(Fernando y Gabriel)
+        + Comentarios simples o múltiples (// o /* */)
+    + Bash(Ana)
+    + Ruby(Josué)
 
 - **Semántica JS:**
     + Asignación, Cadenas, booleanos, números y nulos
@@ -19,3 +21,5 @@
     + Length de cualquier objeto
     + If, While, for
     + Console.log , console.error(con su color respectivo)
+
+## Objetivos Secundarios
