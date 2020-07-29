@@ -1,0 +1,21 @@
+# Checklist:
+
+- **main.py**
+    + Debe leer los argumentos de la consola.
+    + Ejecutar JS
+    + Crear tabla de símbolos JS
+    + Detectar Ruby y Bash
+
+- **Gramática**
+    + JS
+        + Comentarios simples o múltiples (// o /* */)    
+    + Bash
+    + Ruby
+
+- **Semántica JS:**
+    + Asignación, Cadenas, booleanos, números y nulos
+    + Comparaciones simples ( ==, <, >, <=, >=, !=)
+    + Funciones ( 0-2 parámetros)
+    + Length de cualquier objeto
+    + If, While, for
+    + Console.log , console.error(con su color respectivo)
