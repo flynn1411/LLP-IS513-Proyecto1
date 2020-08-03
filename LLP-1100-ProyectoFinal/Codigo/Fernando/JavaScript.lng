@@ -1,2 +1,1 @@
-a = 12 + 3
-console.log(a)
+consolelog(12+3*5)

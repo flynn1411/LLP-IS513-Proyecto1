@@ -7,42 +7,41 @@
 #Definicion de la gramatica de JavaScript
 grammar = """
 
-    start: exp+
+    ?start: exp+
 
-    exp: var "=" expresion -> assigvar
-        | "console.log" "(" expresion ")"-> print
+    ?exp: var "=" expresion -> assigvar
+        | "consolelog" "(" expresion ")"-> print
         | "console.err" "(" expresion ")"-> print
 
-    expresion: aritmeticexpresion
+    ?expresion: aritmeticexpresion
 
-
-    aritmeticexpresion: term
+    ?aritmeticexpresion: term
         | aritmeticexpresion "+" term -> sum
         | aritmeticexpresion "-" term -> sub
     
-    term: factor
+    ?term: factor
         | term "*" factor -> mul 
         | term "/" factor -> div
 
-    factor: atom
+    ?factor: atom
 
-    atom: var -> getvar
+    ?atom: var -> getvar
         | number
         | string
         | bool
         | null
 
-    var: /[a-zA-z]\w*/
+    ?var: /[a-zA-z]\w*/
 
-    number: /\d+(\.\d+)?/
+    ?number: /\d+(\.\d+)?/
 
-    string: /"[^"]*"/
+    ?string: /"[^"]*"/
         | /'[^']*'/
 
-    bool: /true/
+    ?bool: /true/
         |  /false/  
 
-    null: /null/
+    ?null: /null/
 
     %ignore /\s+/
 

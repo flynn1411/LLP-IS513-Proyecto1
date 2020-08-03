@@ -15,29 +15,56 @@ class Semantic(Transformer):
         print(item)
     
     def sum(self, valueA, valueB):
-        print(valueA)
+        valueA,typeA = self.parseToken(valueA)
+        valueB,typeB = self.parseToken(valueB)
+        
+        if ((typeA == "float") and (typeB == "float")):
+            return valueA + valueB
+
+    def sub(self, valueA, valueB):
+        valueA,typeA = self.parseToken(valueA)
+        valueB,typeB = self.parseToken(valueB)
+        
+        if ((typeA == "float") and (typeB == "float")):
+            return valueA - valueB
+
+    def mul(self, valueA, valueB):
         valueA,typeA = self.parseToken(valueA)
         valueB,typeB = self.parseToken(valueB)
 
-        if (typeA == "float" and typeB == "flaot"):
-            return valueA + valueB
+        #print(valueA * valueB)
+        
+        if ((typeA == "float") and (typeB == "float")):
+            return valueA * valueB
+
+    def div(self, valueA, valueB):
+        valueA,typeA = self.parseToken(valueA)
+        valueB,typeB = self.parseToken(valueB)
+        
+        if ((typeA == "float") and (typeB == "float")):
+            return valueA * valueB
     
     def parseToken(self,value):
-
-        if(re.match(r"/\d+(\.\d+)?/",value)):
+        print((type(value) == float))
+        if (re.match(r"\d+(\.\d+)?",value) or type(value) == float):
+            print("asd")
             return (float(value),"float")
+        
 
-        elif(re.match(r"/\"[^\"]*\"/",value)):
+        elif(re.match(r"\"[^\"]*\"",value)):
             return ("%s"%value,"string")
         
-        elif(re.match(r"/true/",value)):
+        elif(re.match(r"true",value)):
             return (True,"bool")
 
-        elif(re.match(r"/false/",value)):
+        elif(re.match(r"false",value)):
             return (False,"bool")
         
-        elif(re.match(r"/null/",value)):
+        elif(re.match(r"null",value)):
             return (None,"null")
+
+        else:
+            return ("Error","Error")
 
     def getvar(self,name):
         return self.variables[name]
