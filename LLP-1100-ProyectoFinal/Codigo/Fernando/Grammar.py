@@ -7,17 +7,24 @@
 #Definicion de la gramatica de JavaScript
 grammar = """
 
-    //
-    strat: exp?
+    start: exp+
 
     exp: var "=" expresion -> assigvar
+        | "console.log" "(" expresion ")"-> print
+        | "console.err" "(" expresion ")"-> print
 
     expresion: aritmeticexpresion
 
 
-    aritmeticexpresion: atom
-        | aritmeticexpresion "+" atom -> sum
-        
+    aritmeticexpresion: term
+        | aritmeticexpresion "+" term -> sum
+        | aritmeticexpresion "-" term -> sub
+    
+    term: factor
+        | term "*" factor -> mul 
+        | term "/" factor -> div
+
+    factor: atom
 
     atom: var -> getvar
         | number
@@ -37,7 +44,7 @@ grammar = """
 
     null: /null/
 
-
+    %ignore /\s+/
 
 
 
