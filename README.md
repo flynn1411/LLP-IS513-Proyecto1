@@ -1,2 +1,25 @@
-# LLP-IS513-Proyecto1
-Proyecto realizado para la clase de Lenguajes de Programación, sección 1100
+# Checklist:
+
+## Objetivos Principales
+
+- **Main**
+    + Debe leer los argumentos de la consola.
+    + Ejecutar JS
+    + Crear tabla de símbolos JS
+    + Detectar Ruby y Bash
+
+- **Gramática**
+    + JS(Fernando y Gabriel) 50%
+        + Comentarios simples o múltiples (// o /* */)
+    + Bash(Ana)
+    + Ruby(Josué)
+
+- **Semántica JS:**
+    + ~~Asignación, Cadenas, booleanos, números y nulos~~ 
+    + ~~Comparaciones simples ( ==, <, >, <=, >=, !=)~~
+    + Funciones ( 0-2 parámetros)
+    + Length de cualquier objeto
+    + If, While, for
+    + Console.log , console.error(con su color respectivo) 50%
+
+## Objetivos Secundarios
