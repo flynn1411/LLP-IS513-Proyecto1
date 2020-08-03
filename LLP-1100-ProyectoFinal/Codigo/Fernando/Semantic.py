@@ -7,8 +7,7 @@ from lark import Transformer,v_args
 class Semantic(Transformer):
     def __init__(self):
         self.variables = {}
-        
-    #asdasd
+
     def assigvar(self,name,value):
         value,typeVal = self.parseToken(value)
 
