@@ -1,1 +1,6 @@
-consolelog(12+3*5)
+a = "Hola" + " Mundo"
+c = "\tFer" 
+b = 3 
+consolelog(a)
+consolelog(c)
+consolelog(12+b*5)
