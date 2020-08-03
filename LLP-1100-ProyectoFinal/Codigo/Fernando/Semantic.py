@@ -9,10 +9,15 @@ class Semantic(Transformer):
         self.variables = {}
     
     def assigvar(self,name,value):
+        value,typeVal = self.parseToken(value)
+
+        if (typeVal == "string"):
+            self.variables[name] = self.cleanParam(value)
+
         self.variables[name] = value
     
     def print(self,item):
-        print(self.cleanParam(item))
+        print(item)
     
     def sum(self, valueA, valueB):
         valueA,typeA = self.parseToken(valueA)
