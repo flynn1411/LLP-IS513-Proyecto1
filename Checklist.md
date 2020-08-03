@@ -2,24 +2,24 @@
 
 ## Objetivos Principales
 
-- **main.py**
+- **Main**
     + Debe leer los argumentos de la consola.
     + Ejecutar JS
     + Crear tabla de símbolos JS
     + Detectar Ruby y Bash
 
 - **Gramática**
-    + JS(Fernando y Gabriel)
+    + JS(Fernando y Gabriel) 50%
         + Comentarios simples o múltiples (// o /* */)
     + Bash(Ana)
     + Ruby(Josué)
 
 - **Semántica JS:**
-    + Asignación, Cadenas, booleanos, números y nulos
-    + Comparaciones simples ( ==, <, >, <=, >=, !=)
+    + ~~Asignación, Cadenas, booleanos, números y nulos~~ 
+    + ~~Comparaciones simples ( ==, <, >, <=, >=, !=)~~
     + Funciones ( 0-2 parámetros)
     + Length de cualquier objeto
     + If, While, for
-    + Console.log , console.error(con su color respectivo)
+    + Console.log , console.error(con su color respectivo) 50%
 
 ## Objetivos Secundarios

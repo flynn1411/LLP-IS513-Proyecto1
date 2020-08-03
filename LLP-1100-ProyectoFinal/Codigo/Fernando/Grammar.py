@@ -9,11 +9,16 @@ grammar = """
 
     ?start: exp+
 
-    ?exp: var "=" expresion -> assigvar
-        | "consolelog" "(" expresion ")"-> print
-        | "console.err" "(" expresion ")"-> print
+    ?exp: var "=" expresion ";" -> assigvar
+        | "console" "." "log" "(" expresion ")" ";" -> print
+        | "console" "." "err" "(" expresion ")" ";" -> print
 
     ?expresion: aritmeticexpresion
+        | aritmeticexpresion "==" term -> equal
+        | aritmeticexpresion ">=" term -> greaterequal
+        | aritmeticexpresion "<=" term -> lesserequal
+        | aritmeticexpresion ">" term -> greater
+        | aritmeticexpresion "<" term -> lesser
 
     ?aritmeticexpresion: term
         | aritmeticexpresion "+" term -> sum
@@ -44,9 +49,6 @@ grammar = """
     ?null: /null/
 
     %ignore /\s+/
-
-
-
 
 
 """

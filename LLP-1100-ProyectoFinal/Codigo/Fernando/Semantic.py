@@ -7,18 +7,68 @@ from lark import Transformer,v_args
 class Semantic(Transformer):
     def __init__(self):
         self.variables = {}
-
+   
     def assigvar(self,name,value):
         value,typeVal = self.parseToken(value)
 
         if (typeVal == "string"):
             self.variables[name] = self.cleanParam(value)
-
-        self.variables[name] = value
+        
+        else:
+            self.variables[name] = value
     
     def print(self,item):
         print(item)
     
+    def equal(self,valueA,valueB):
+        valueA,typeA = self.parseToken(valueA)
+        valueB,typeB = self.parseToken(valueB)
+
+        if ((typeA == "float") and (typeB == "float")):
+            if valueA == valueB:
+                return "true"
+            else:
+                return "false"
+    def greaterequal(self,valueA,valueB):
+        valueA,typeA = self.parseToken(valueA)
+        valueB,typeB = self.parseToken(valueB)
+
+        if ((typeA == "float") and (typeB == "float")):
+            if valueA >= valueB:
+                return "true"
+            else:
+                return "false"
+                
+    def lesserequal(self,valueA,valueB):
+        valueA,typeA = self.parseToken(valueA)
+        valueB,typeB = self.parseToken(valueB)
+
+        if ((typeA == "float") and (typeB == "float")):
+            if valueA <= valueB:
+                return "true"
+            else:
+                return "false"
+
+    def greater(self,valueA,valueB):
+        valueA,typeA = self.parseToken(valueA)
+        valueB,typeB = self.parseToken(valueB)
+
+        if ((typeA == "float") and (typeB == "float")):
+            if valueA > valueB:
+                return "true"
+            else:
+                return "false"
+
+    def lesser(self,valueA,valueB):
+        valueA,typeA = self.parseToken(valueA)
+        valueB,typeB = self.parseToken(valueB)
+
+        if ((typeA == "float") and (typeB == "float")):
+            if valueA < valueB:
+                return "true"
+            else:
+                return "false"
+
     def sum(self, valueA, valueB):
         valueA,typeA = self.parseToken(valueA)
         valueB,typeB = self.parseToken(valueB)
@@ -54,9 +104,6 @@ class Semantic(Transformer):
 
         if ((type(value) == float) or (re.match(r"\d+(\.\d+)?",value))):
             return (float(value),"float")
-
-        elif ((type(value) == str) or (re.match(r"\"[^\"]*\"",value)) or (re.match(r"'[^']*'",value))):
-            return ("%s"%self.cleanParam(value),"string")
         
         elif(re.match(r"true",value)):
             return (True,"bool")
@@ -66,6 +113,9 @@ class Semantic(Transformer):
         
         elif(re.match(r"null",value)):
             return (None,"null")
+
+        elif ((type(value) == str) or (re.match(r"\"[^\"]*\"",value)) or (re.match(r"'[^']*'",value))):
+            return ("%s"%self.cleanParam(value),"string")
 
         else:
             return ("Error","Error")

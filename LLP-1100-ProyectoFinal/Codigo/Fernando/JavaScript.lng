@@ -1,7 +1,8 @@
-a = "Hola" + " Mundo"
-c = "\tFer" 
-b = 3 
-c = 3 + 2
-consolelog(a)
-consolelog(c)
-consolelog(12+b*5)
+a = "Hola" + " Mundo";
+c = "\tFer";
+b = 3;
+console.log(a);
+console.log(c);
+console.log(5==5);
+console.log(5<=1);
+console.log(5<5);
