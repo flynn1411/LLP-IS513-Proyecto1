@@ -8,18 +8,25 @@
 grammar = """
 
     ?start: exp+ 
-        | "function" identifier "(" parameters ")" "{" cualquiercosa "}" -> fun
+        
 
-    ?cualquiercosa:  /[^}]+/ -> savefun
+    ?cualquiercosa:  /[^}]+/ -> parsefun
 
     ?parameters: 
+        | identifier       
+        | identifier "," parameters -> saveparams
+       
+    ?arguments:
         | atom
-        | atom "," parameters  -> parameters
+        | atom "," arguments -> sendarguments
+
 
     ?exp: identifier "=" expresion ";" -> assigvar
         | "console" "." "log" "(" expresion ")" ";" -> print
         | "console" "." "err" "(" expresion ")" ";" -> print
-
+        | "function" identifier "(" parameters ")" "{" cualquiercosa "}" -> savefun
+        | identifier "(" arguments ")" ";" -> exefun
+        
     ?expresion: aritmeticexpresion
         | conditonexpresion
         | identifier "(" parameters ")"         

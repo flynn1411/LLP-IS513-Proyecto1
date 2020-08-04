@@ -1,4 +1,9 @@
-function hola(){
-    a = 1 + 2;
-    console.log("aqui estoy dentro de la función");
+function hola( num1, num2 ){
+    total = num1 + num2;
+    console.log("aqui estoy dentro de la funcion");
+    console.log(total)
 }
+
+
+console.log("aqui estoy fuera de la funcion");
+hola( 2, 6);

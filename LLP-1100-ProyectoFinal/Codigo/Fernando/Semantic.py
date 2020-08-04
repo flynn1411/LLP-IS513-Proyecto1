@@ -14,7 +14,6 @@ class Semantic(Transformer):
     def __init__(self):
         self.variables = {}
         self.instructions = {}
-        self.params = None
    
     def assigvar(self,name,value):
         value,typeVal = self.parseToken(value)
@@ -155,7 +154,7 @@ class Semantic(Transformer):
         ):
             return True
 
-    def arguments(self, val1, val2):
+    def sendarguments(self, val1, val2):
         if(type(val2) == list ):
             parameters = val2[:]
             if(val1 in self.variables.keys()):
@@ -174,22 +173,33 @@ class Semantic(Transformer):
         
         return parameters
 
-    def parameters(self,param1, param2):
-        if( type(param2) == list ):
-            parameters = param2[:]
-            parameters += [param1]
+    def saveparams(self,param1, param2):
+        parameters = []
+        if(param1 and param2):            
+            if( type(param2) == list ):
+                parameters = param2[:]
+                parameters += [str(param1)]
 
-        else:
-            parameters = [param2, param1 ]
+            else:
+                parameters = [str(param2), str(param1) ]
         
         return parameters
 
 
-    def fun(self, name, param, instructions):
-        self.instructions[name] = {instructions}
-        print(self.instructions[name])
+    def savefun(self, name, params, instructions):
+        params.reverse()
+        self.instructions[name] = {}
+        self.instructions[name]["instructions"] = instructions
+        self.instructions[name]["params"] = params
+  
+        
 
 
-    def savefun(self, expresions):
+    def parsefun(self, expresions):
         return ("%s" % expresions).strip()
 
+    def exefun(self, name, arguments):
+        print("\nEjecutar: ")
+        print("\t %s" % self.instructions[name])
+        print("\ncon argumentos: ")
+        print("\t%s" % arguments)
