@@ -1,0 +1,28 @@
+n = 2
+a = n
+
+suma = 14 + 2.34
+
+mult = 98*69
+
+div = (2+3)/1
+
+#comentario de una linea
+
+=begin
+afuabfuas
+asnfiasnofshnofs
+oafnaonfqoaiwf
+=end
+
+/comment
+comentarios 
+de multiples
+lineas
+uncomment/
+
+bool = 2+3 > 1+1 
+
+bool2 = bool == True
+
+str = "Hola Mundo"
