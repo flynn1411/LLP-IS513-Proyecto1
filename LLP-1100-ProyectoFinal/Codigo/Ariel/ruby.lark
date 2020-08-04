@@ -1,6 +1,40 @@
-start: exp+
+?start: exp+
 
-exp: var "=" string "\n"
-    | var "=" arithmeticoperation "\n"
-    | var "=" booleanoperation "\n"
-    |
+?exp: var "=" expresion "\n"
+
+?expresion: aritmeticexpresion
+    | expresion "==" aritmeticexpresion
+    | expresion ">=" aritmeticexpresion
+    | expresion "<=" aritmeticexpresion
+    | expresion ">" aritmeticexpresion
+    | expresion "<" aritmeticexpresion
+
+?aritmeticexpresion: term
+    | aritmeticexpresion "+" term
+    | aritmeticexpresion "-" term
+
+?term: factor
+    | term "*" factor
+    | term "/" factor
+
+?factor: atom
+
+?atom: var
+    | number
+    | string
+    | bool
+
+?var: /[a-zA-z]\w*/
+
+?number: /\d+(\.\d+)?/
+
+?string: /"[^"]*"/
+    | /'[^']*'/
+
+?bool: /true/
+    |  /false/
+
+%ignore /(\s)/
+    | /(#[^\n]*\n)/
+    | / //(comment)?[^(//)]*(uncomment)?// /)
+    | /(=begin[\w\W]*=end)/
