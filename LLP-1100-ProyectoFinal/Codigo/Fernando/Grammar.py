@@ -7,14 +7,24 @@
 #Definicion de la gramatica de JavaScript
 grammar = """
 
-    ?start: exp+
+    ?start: exp+ 
+        | "function" identifier "(" parameters ")" "{" cualquiercosa "}" -> fun
+
+    ?cualquiercosa:  /[^}]+/ -> savefun
+
+    ?parameters: 
+        | atom
+        | atom "," parameters  -> parameters
 
     ?exp: identifier "=" expresion ";" -> assigvar
         | "console" "." "log" "(" expresion ")" ";" -> print
         | "console" "." "err" "(" expresion ")" ";" -> print
 
     ?expresion: aritmeticexpresion
-        | expresion "==" aritmeticexpresion -> equal
+        | conditonexpresion
+        | identifier "(" parameters ")"         
+
+    ?conditonexpresion: expresion "==" aritmeticexpresion -> equal
         | expresion ">=" aritmeticexpresion -> greaterequal
         | expresion "<=" aritmeticexpresion -> lesserequal
         | expresion ">" aritmeticexpresion -> greater
@@ -41,5 +51,6 @@ grammar = """
 
     %ignore /\s+/
 
+    
 
 """

@@ -13,6 +13,8 @@ from lark import Transformer,v_args
 class Semantic(Transformer):
     def __init__(self):
         self.variables = {}
+        self.instructions = {}
+        self.params = None
    
     def assigvar(self,name,value):
         value,typeVal = self.parseToken(value)
@@ -152,3 +154,42 @@ class Semantic(Transformer):
             re.match(r"^null$", value) 
         ):
             return True
+
+    def arguments(self, val1, val2):
+        if(type(val2) == list ):
+            parameters = val2[:]
+            if(val1 in self.variables.keys()):
+                val1 = self.getvalue(val1)
+            parameters += [val1]
+        
+        else:
+            
+            if(val1 in self.variables.keys()):
+                val1 = self.getvalue(val1)
+
+            if(val2 in self.variables.keys()):
+                val2 = self.getvalue(val2)
+            
+            parameters = [val2, val1 ]
+        
+        return parameters
+
+    def parameters(self,param1, param2):
+        if( type(param2) == list ):
+            parameters = param2[:]
+            parameters += [param1]
+
+        else:
+            parameters = [param2, param1 ]
+        
+        return parameters
+
+
+    def fun(self, name, param, instructions):
+        self.instructions[name] = {instructions}
+        print(self.instructions[name])
+
+
+    def savefun(self, expresions):
+        return ("%s" % expresions).strip()
+

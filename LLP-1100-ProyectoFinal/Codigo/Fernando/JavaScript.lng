@@ -1,11 +1,4 @@
-a = "Hola" + " Mundo";
-c = "\tFer";
-b = false;
-console.log(b);
-console.log(a);
-console.log(c);
-console.log(5==5);
-console.log(5<=1);
-console.log(5<5);
-console.log(2+3 > 1+1);
-console.log(null);
+function hola(){
+    a = 1 + 2;
+    console.log("aqui estoy dentro de la función");
+}
