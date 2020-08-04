@@ -17,7 +17,6 @@ class Semantic(Transformer):
     def assigvar(self,name,value):
         value,typeVal = self.parseToken(value)
       
-
         if (typeVal == "string"):
             self.variables[name] = self.cleanParam(value)
         
@@ -108,19 +107,18 @@ class Semantic(Transformer):
             return valueA / valueB
     
     def parseToken(self,value):
-        print(value)
         
         if ((type(value) == float) or (re.match(r"\d+(\.\d+)?",value))):
             return (float(value),"float")
         
         elif(re.match(r"^true$",value)):
-            return (True,"bool")
+            return ("true","bool")
 
         elif(re.match(r"^false$",value)):
-            return (False,"bool")
+            return ("false","bool")
         
         elif(value == "null"):
-            return (None,"null")
+            return ("null","null")
 
         elif ((type(value) == str) or (re.match(r"\"[^\"]*\"",value)) or (re.match(r"'[^']*'",value))):
             return ("%s"%self.cleanParam(value),"string")
@@ -128,7 +126,12 @@ class Semantic(Transformer):
         else:
             return ("Error","Error")
 
-    def getvar(self,name):
+    def getvalue(self,name):
+
+        if self.iskeyword(name):
+            value, _ = self.parseToken(name)
+            return value
+
         return self.variables[name]
 
     def cleanParam(self, param):
@@ -141,3 +144,11 @@ class Semantic(Transformer):
             #print(param)
             return param[1:-1]
         return param
+
+    def iskeyword(self, value):
+        if( 
+            re.match(r"^true$", value) or
+            re.match(r"^false$", value) or
+            re.match(r"^null$", value) 
+        ):
+            return True

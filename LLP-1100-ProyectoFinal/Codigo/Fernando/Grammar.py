@@ -9,7 +9,7 @@ grammar = """
 
     ?start: exp+
 
-    ?exp: var "=" expresion ";" -> assigvar
+    ?exp: identifier "=" expresion ";" -> assigvar
         | "console" "." "log" "(" expresion ")" ";" -> print
         | "console" "." "err" "(" expresion ")" ";" -> print
 
@@ -28,23 +28,16 @@ grammar = """
         | term "*" atom -> mul 
         | term "/" atom -> div
 
-    ?atom: var -> getvar
+    ?atom: identifier -> getvalue
         | number
-        | string
-        | bool
-        | null
+        | string        
 
-    ?var: /[a-zA-z]\w*/
+    ?identifier: /[a-zA-z]\w*/
 
     ?number: /\d+(\.\d+)?/
 
     ?string: /"[^"]*"/
         | /'[^']*'/
-
-    ?bool: "true"
-        |  "false"  
-
-    ?null: "null"
 
     %ignore /\s+/
 
