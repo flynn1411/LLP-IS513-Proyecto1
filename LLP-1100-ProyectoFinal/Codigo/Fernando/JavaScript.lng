@@ -1,10 +1,2 @@
-a = "Hola" + " Mundo";
-c = "\tFer";
-b = null;
-console.log(a);
-console.log(c);
-console.log(5==5);
-console.log(5<=1);
-console.log(5<5);
-console.log(2+3 > 1+1);
-console.log('null');
+b = true;
+console.log(b);

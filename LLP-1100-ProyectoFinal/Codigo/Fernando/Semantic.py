@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 
+"""
+    @author Fernando y Gabriel
+    @date 03-08-2020
+    @version 0.1
+"""
+
 import re
 from lark import Transformer,v_args
 
@@ -10,6 +16,7 @@ class Semantic(Transformer):
    
     def assigvar(self,name,value):
         value,typeVal = self.parseToken(value)
+      
 
         if (typeVal == "string"):
             self.variables[name] = self.cleanParam(value)
@@ -101,17 +108,18 @@ class Semantic(Transformer):
             return valueA / valueB
     
     def parseToken(self,value):
-
+        print(value)
+        
         if ((type(value) == float) or (re.match(r"\d+(\.\d+)?",value))):
             return (float(value),"float")
         
-        elif(re.match(r"true",value)):
+        elif(re.match(r"^true$",value)):
             return (True,"bool")
 
-        elif(re.match(r"false",value)):
+        elif(re.match(r"^false$",value)):
             return (False,"bool")
         
-        elif(re.match(r"null",value)):
+        elif(value == "null"):
             return (None,"null")
 
         elif ((type(value) == str) or (re.match(r"\"[^\"]*\"",value)) or (re.match(r"'[^']*'",value))):

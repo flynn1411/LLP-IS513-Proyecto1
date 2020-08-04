@@ -24,11 +24,9 @@ grammar = """
         | aritmeticexpresion "+" term -> sum
         | aritmeticexpresion "-" term -> sub
     
-    ?term: factor
-        | term "*" factor -> mul 
-        | term "/" factor -> div
-
-    ?factor: atom
+    ?term: atom
+        | term "*" atom -> mul 
+        | term "/" atom -> div
 
     ?atom: var -> getvar
         | number
@@ -43,10 +41,10 @@ grammar = """
     ?string: /"[^"]*"/
         | /'[^']*'/
 
-    ?bool: /true/
-        |  /false/  
+    ?bool: "true"
+        |  "false"  
 
-    ?null: /null/
+    ?null: "null"
 
     %ignore /\s+/
 
