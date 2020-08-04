@@ -14,11 +14,11 @@ grammar = """
         | "console" "." "err" "(" expresion ")" ";" -> print
 
     ?expresion: aritmeticexpresion
-        | aritmeticexpresion "==" term -> equal
-        | aritmeticexpresion ">=" term -> greaterequal
-        | aritmeticexpresion "<=" term -> lesserequal
-        | aritmeticexpresion ">" term -> greater
-        | aritmeticexpresion "<" term -> lesser
+        | expresion "==" aritmeticexpresion -> equal
+        | expresion ">=" aritmeticexpresion -> greaterequal
+        | expresion "<=" aritmeticexpresion -> lesserequal
+        | expresion ">" aritmeticexpresion -> greater
+        | expresion "<" aritmeticexpresion -> lesser
 
     ?aritmeticexpresion: term
         | aritmeticexpresion "+" term -> sum

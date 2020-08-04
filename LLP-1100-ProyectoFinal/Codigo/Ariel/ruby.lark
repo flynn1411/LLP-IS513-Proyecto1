@@ -1,0 +1,6 @@
+start: exp+
+
+exp: var "=" string "\n"
+    | var "=" arithmeticoperation "\n"
+    | var "=" booleanoperation "\n"
+    |
