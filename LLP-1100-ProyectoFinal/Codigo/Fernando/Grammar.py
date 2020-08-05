@@ -8,9 +8,14 @@
 grammar = """
 
     ?start: exp+ 
-        
 
-    ?cualquiercosa:  /[^}]+/ -> parsefun
+    ?exp: identifier "=" expresion ";" -> assigvar
+        | "console" "." "log" "(" expresion ")" ";" -> print
+        | "console" "." "err" "(" expresion ")" ";" -> print
+        | "function" identifier "(" parameters ")" "{" instructions "}" -> savefun
+        | "if" "(" expresion ")" "{" instructions "}" -> ifstmt
+        | "if" "(" expresion ")" "{" instructions "}" "else" "{" instructions "}"  -> ifelsestmt
+        | expresion 
 
     ?parameters: 
         | identifier       
@@ -20,16 +25,10 @@ grammar = """
         | atom
         | atom "," arguments -> sendarguments
 
-
-    ?exp: identifier "=" expresion ";" -> assigvar
-        | "console" "." "log" "(" expresion ")" ";" -> print
-        | "console" "." "err" "(" expresion ")" ";" -> print
-        | "function" identifier "(" parameters ")" "{" cualquiercosa "}" -> savefun
-        | identifier "(" arguments ")" ";" -> exefun
-        
     ?expresion: aritmeticexpresion
-        | conditonexpresion
-        | identifier "(" parameters ")"         
+        | atom "." "length" "(" ")" -> length
+        | identifier "(" arguments ")" ";" -> exefun
+        | conditonexpresion      
 
     ?conditonexpresion: expresion "==" aritmeticexpresion -> equal
         | expresion ">=" aritmeticexpresion -> greaterequal
@@ -55,6 +54,8 @@ grammar = """
 
     ?string: /"[^"]*"/
         | /'[^']*'/
+
+    ?instructions:  /[^}]+/ -> parsefun
 
     %ignore /\s+/
 

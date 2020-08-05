@@ -7,7 +7,8 @@
 """
 
 import re
-from lark import Transformer,v_args
+from lark import Lark,Transformer,v_args
+from Grammar import *
 
 @v_args(inline=True)
 class Semantic(Transformer):
@@ -17,7 +18,7 @@ class Semantic(Transformer):
    
     def assigvar(self,name,value):
         value,typeVal = self.parseToken(value)
-      
+        
         if (typeVal == "string"):
             self.variables[name] = self.cleanParam(value)
         
@@ -25,8 +26,15 @@ class Semantic(Transformer):
             self.variables[name] = value
     
     def print(self,item):
-        print(item)
-    
+        
+        item = "%s"%item
+        item,typeVal = self.parseToken(item)
+
+        if (typeVal == "string"):
+            print(self.cleanParam(item))
+        else:
+            print(item)
+
     def equal(self,valueA,valueB):
         valueA,typeA = self.parseToken(valueA)
         valueB,typeB = self.parseToken(valueB)
@@ -185,21 +193,57 @@ class Semantic(Transformer):
         
         return parameters
 
-
     def savefun(self, name, params, instructions):
-        params.reverse()
+        if type(params) == list:
+            params.reverse()
         self.instructions[name] = {}
         self.instructions[name]["instructions"] = instructions
         self.instructions[name]["params"] = params
   
-        
-
-
     def parsefun(self, expresions):
         return ("%s" % expresions).strip()
 
     def exefun(self, name, arguments):
-        print("\nEjecutar: ")
-        print("\t %s" % self.instructions[name])
-        print("\ncon argumentos: ")
-        print("\t%s" % arguments)
+        
+        if type(arguments) == list:
+            arguments.reverse()
+        text = self.instructions[name]["instructions"]
+        parameters = self.instructions[name]["params"]
+        add = ""
+        for i in range(len(parameters)):
+            add += "%s = %s;\n"%(parameters[i],arguments[i])     
+
+        text = "%s%s"%(add,text)
+        self.subProgram(text)
+    
+    #def rtn(self,expersion):
+        #return expersion
+
+    def length(self,value):
+        return len(value)
+    
+    def ifstmt(self,condition,instructions):
+        
+        if condition == "true": 
+            self.subProgram(instructions)
+        else:
+            pass
+
+    def ifelsestmt(self,condition,ifInstructions,elseInstructions):
+        
+        if condition == "true": 
+            self.subProgram(ifInstructions)
+        else:
+             self.subProgram(elseInstructions)
+
+    def subProgram(self,text):
+
+        parser = Lark(grammar,parser="lalr",transformer=self)
+        language = parser.parse
+
+        sample = text
+        try:
+            language(sample)
+        except Exception as e:
+            print("Error: %s" % e)
+        
