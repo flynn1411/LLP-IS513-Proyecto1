@@ -57,7 +57,9 @@ grammar = """
 
     ?instructions:  /[^}]+/ -> parsefun
 
+    %ignore /\/\/.+/
     %ignore /\s+/
+        
 
     
 

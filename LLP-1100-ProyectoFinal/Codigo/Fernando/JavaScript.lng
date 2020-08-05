@@ -1,11 +1,5 @@
+//asdasd
 a = 1;
-b = 2;
 
-function hola(a,b){
-    console.log(a);
-}
-    if(b>a){
-        console.log("Funciono");
-    }
-
-hola(a,b);
+// Comentario
+console.log(a);
