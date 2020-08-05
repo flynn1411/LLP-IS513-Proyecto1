@@ -11,10 +11,11 @@ grammar = """
 
     ?exp: identifier "=" expresion ";" -> assigvar
         | "console" "." "log" "(" expresion ")" ";" -> print
-        | "console" "." "err" "(" expresion ")" ";" -> print
+        | "console" "." "err" "(" expresion ")" ";" -> printerr
         | "function" identifier "(" parameters ")" "{" instructions "}" -> savefun
         | "if" "(" expresion ")" "{" instructions "}" -> ifstmt
         | "if" "(" expresion ")" "{" instructions "}" "else" "{" instructions "}"  -> ifelsestmt
+        | "for" "(" exp conditonexpresion ";" identifier "+" "+" ")" "{" instructions"}" -> forstmt
         | expresion 
 
     ?parameters: 

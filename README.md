@@ -22,6 +22,6 @@
     + ~~Length de cualquier objeto~~
     + ~~If Else~~
     + While, for
-    + Console.log , console.error(con su color respectivo) 50%
+    + ~~Console.log , console.error(con su color respectivo)~~
 
 ## Objetivos Secundarios

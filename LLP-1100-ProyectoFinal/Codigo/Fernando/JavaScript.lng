@@ -1,5 +1,6 @@
 //asdasd
-a = 1;
 
+for(i=4; i < 3 ; i++){
+ console.log("Hola 123");   
+}
 // Comentario
-console.log(a);
