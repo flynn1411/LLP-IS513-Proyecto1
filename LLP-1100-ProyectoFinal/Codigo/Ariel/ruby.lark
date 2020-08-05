@@ -1,10 +1,28 @@
-?start: exp+
+// ! Gramática de Ruby
+// ? Una gramática simple de Ruby que contiene:
+// * Comentarios simples o múltiples
+// * Asignaciones de cadenas, boleanos, números y nulos
+// * Declaración y Ejecición de Funciones
+// * Estructuras de control: if, while, for
+// @author: flynn1411
+// @version: 0.1
+// @date: 04/08/2020
 
-?exp: identifier "=" expression "\n"?
+
+//Comienzo de gramática
+?start: statement+
+
+//Definición de una instrucción
+?statement: identifier "=" expression "\n"?
     | "puts" "("? string ")"? "\n"?
+//    | ifstatement
 
-?expression: arithmeticexpression
+//Definición de una expresión
+?expression: null
+    | arithmeticexpression
     | booleanexpression
+
+//?ifstatement: if expression
 
 ?booleanexpression: booleanatom
     | expression "==" arithmeticexpression
@@ -35,7 +53,12 @@
 ?booleanatom: /True/
     |  /False/
 
-%ignore /(\s)/
-    | /(#[^\n]*\n)/
-    | / \/(comment)?[\w\W]*\n(uncomment)?\/ /
-    | /(=begin\n[\w\W]*\n=end)/
+?null: /nil/
+
+//?nothing: /(\s)/
+//    | /(#[^\n]*\n)/
+//    | /^\/(comment)?[\w\W]*\n(uncomment)?\/$/
+//    | /^=begin\n[\w\W]*\n=end$/
+//    | /\n/
+
+%ignore /(\s)|(#[^\n]*\n)|(^\/(comment)?[\w\d\s]*\n(uncomment)?\/$)|(^=begin\n[\w\W]*\n=end$)/

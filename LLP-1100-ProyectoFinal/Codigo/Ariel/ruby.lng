@@ -5,7 +5,7 @@ suma = 14 + 2.34
 
 mult = 98*69
 
-div = (2+3)/1
+div = 3/1
 
 #comentario de una linea
 
@@ -15,11 +15,7 @@ asnfiasnofshnofs
 oafnaonfqoaiwf
 =end
 
-/comment
-comentarios 
-de multiples
-lineas
-uncomment/
+
 
 bool = 2+3 > 1+1 
 

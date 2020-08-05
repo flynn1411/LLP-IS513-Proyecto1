@@ -11,11 +11,17 @@ parser = Lark.open('ruby.lark', parser='lalr')
 fileName = sys.argv[1:][0]
 
 file1 = open(fileName, "r")
+content = file1.read()
+file1.close()
+
+parser.parse(content)
+
+"""
 lines = file1.readlines()
 
 result = []
 
-count = 0
+count = 1
 
 for line in lines:
     try:
@@ -29,3 +35,4 @@ for line in lines:
 
 
 print(tabulate(result))
+"""
