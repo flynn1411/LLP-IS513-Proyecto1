@@ -10,7 +10,7 @@ parser = Lark.open('ruby.lark', parser='lalr')
 
 fileName = sys.argv[1:][0]
 
-file1 = open(fileName, "r")
+file1 = open("ruby.lng", "r")
 content = file1.read()
 file1.close()
 
