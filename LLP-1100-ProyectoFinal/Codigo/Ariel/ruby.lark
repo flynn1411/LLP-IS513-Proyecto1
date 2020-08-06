@@ -1,6 +1,70 @@
-start: exp+
+// ! Gramática de Ruby
+// ? Una gramática simple de Ruby que contiene:
+// * Comentarios simples o múltiples
+// * Asignaciones de cadenas, boleanos, números y nulos
+// * Declaración y Ejecición de Funciones
+// * Estructuras de control: if, while, for
+// @author: flynn1411
+// @version: 0.1
+// @date: 04/08/2020
 
-exp: var "=" string "\n"
-    | var "=" arithmeticoperation "\n"
-    | var "=" booleanoperation "\n"
-    |
+
+//Comienzo de gramática
+?start: statement+
+
+//Definición de una instrucción
+?statement: identifier "=" expression "\n"?
+    | /puts/ "("? string ")"? "\n"?
+    | identifier "=" null "\n"?
+//    | ifstatement
+
+//Definición de una expresión
+?expression: arithmeticexpression
+    | booleanexpression
+
+//?ifstatement: "if" expression
+
+?booleanexpression: booleanatom
+    | expression "==" expression
+    | expression "!=" expression
+    | arithmeticexpression ">=" arithmeticexpression
+    | arithmeticexpression "<=" arithmeticexpression
+    | arithmeticexpression ">" arithmeticexpression
+    | arithmeticexpression "<" arithmeticexpression
+
+?arithmeticexpression: term
+    | term "+" term
+    | term "-" term
+
+?term: arithmeticatom
+    | arithmeticatom "*" arithmeticatom
+    | arithmeticatom "/" arithmeticatom
+
+?arithmeticatom: identifier
+    | number
+    | "(" group ")"
+    | string
+
+?group: arithmeticexpression
+
+?identifier: /[a-zA-z][a-zA-Z0-9_]*/
+
+?number: /\d+(\.\d+)?/
+
+?string: /"[^"]*"/
+    | /'[^']*'/
+
+?booleanatom: /True/
+    |  /False/
+
+?null: /nil/
+
+//?nothing: /(\s)/
+//    | /(#[^\n]*\n)/
+//    | /^\/(comment)?[\w\W]*\n(uncomment)?\/$/
+//    | /^=begin\n[\w\W]*\n=end$/
+
+%ignore /\s/
+    | "#" /[^\n]*/
+    | "/comment" /[\w\W]*/ "uncomment/"
+    | "=begin" /[\w\W]*/ "=end"
