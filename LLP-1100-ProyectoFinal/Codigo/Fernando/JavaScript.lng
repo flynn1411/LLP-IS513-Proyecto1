@@ -1,6 +1,4 @@
-//asdasd
 
-for(i=4; i < 3 ; i++){
- console.log("Hola 123");   
-}
-// Comentario
+a = 1;
+b = a + 4 * 2;
+console.log(b);

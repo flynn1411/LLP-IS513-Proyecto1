@@ -32,7 +32,7 @@ class Semantic(Transformer):
         else:
             self.variables[name] = value
         
-        return value
+        return name
 
 #! console.log de Java script
     def print(self,*item):
@@ -57,7 +57,7 @@ class Semantic(Transformer):
 
     #Color a los print
         if (typeVal == "string"):
-            print("\033[1 %s \033[0m" %self.cleanParam(item))
+            print("\033[1;31;1m %s \033[0m" %self.cleanParam(item))
         else:
             print("\033[1;31;1m %s \033[0m" %item)
 
@@ -326,14 +326,74 @@ class Semantic(Transformer):
         except Exception as e:
             print("Error: %s" % e)
 
+
+    def condionforcomp(self, var1, cond, var2):
+        
+        return (int(var1),cond,int(var2))
+
+    def logicalequal(self):
+        return "=="
+
+    def logicalmorethan(self):
+        return ">="
+
+    def logicallessthan(self):
+        return "<="
+
+    def logicalmore(self):
+        return ">"
+
+    def logicalless(self):
+        return "<"
+
+
 #! Bucle For
-    def forstmt(self,exp,condition,increment,instruccion):
+    def forstmt(self,nameVar,condition,increment,instruccion):
+
+        logSymbol = condition[1]
+        changingVar = self.variables[nameVar]
+        
+        if(changingVar == condition[2]):
+            untilVar = condition[0]
+        else:
+            untilVar = condition[2]
+        
+        keep = self.conditionalEval(changingVar, logSymbol, untilVar)
+
+        while(keep):
+            self.subProgram(instruccion)
+
+            if(increment == "++"):
+                changingVar += 1
+                
+            elif(increment == "--"):
+                changingVar -= 1
+
+            self.variables[nameVar] = changingVar
+            keep = self.conditionalEval(changingVar, logSymbol, untilVar)
+                
     
-        a = exp
-        
-        print(condition)
-        print(increment)
-        #print(instruccion)
-        
-        for i in range(int(exp)):
-            self.subProgram(instruccion)                   
+    def conditionalEval(self,var1, cond, var2):
+        if(cond == "=="):
+            if(not (var1 == var2)): return False
+            
+        elif(cond == "<="):
+            if(not (var1 <= var2)): return False
+           
+        elif(cond == ">="):
+           if(not (var1 >= var2)): return False
+           
+        elif(cond == "<"):
+           if(not (var1 < var2)): return False
+
+        elif(cond == ">"):
+           if(not (var1 > var2)): return False
+
+        return True
+
+#! Incrementar 
+    def incremento(self,name):
+        return "++"
+    
+    def decrement(self,name):
+        return "--"

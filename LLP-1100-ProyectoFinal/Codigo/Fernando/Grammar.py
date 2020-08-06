@@ -15,9 +15,17 @@ grammar = """
         | "function" identifier "(" parameters ")" "{" instructions "}" -> savefun
         | "if" "(" expresion ")" "{" instructions "}" -> ifstmt
         | "if" "(" expresion ")" "{" instructions "}" "else" "{" instructions "}"  -> ifelsestmt
-        | "for" "(" exp conditonexpresion ";" identifier "+" "+" ")" "{" instructions"}" -> forstmt
+        | "for" "(" exp conditionfor increment ")" "{" instructions"}" -> forstmt
         | expresion 
-
+        
+    ?conditionfor: atom logicalstmt atom ";" -> condionforcomp
+    
+    ?logicalstmt: "==" -> logicalequal
+        | ">=" -> logicalmorethan
+        | "<=" -> logicallessthan
+        | ">" -> logicalmore
+        | "<" -> logicalless
+    
     ?parameters: 
         | identifier       
         | identifier "," parameters -> saveparams
@@ -29,18 +37,23 @@ grammar = """
     ?expresion: aritmeticexpresion
         | atom "." "length" "(" ")" -> length
         | identifier "(" arguments ")" ";" -> exefun
-        | conditonexpresion      
+        | conditonexpresion    
+        | increment
+
+    ?increment:  identifier "+" "+"-> incremento
+        | identifier "-" "-" -> decrement
 
     ?conditonexpresion: expresion "==" aritmeticexpresion -> equal
         | expresion ">=" aritmeticexpresion -> greaterequal
         | expresion "<=" aritmeticexpresion -> lesserequal
         | expresion ">" aritmeticexpresion -> greater
         | expresion "<" aritmeticexpresion -> lesser
+        
 
     ?aritmeticexpresion: term
         | aritmeticexpresion "+" term -> sum
         | aritmeticexpresion "-" term -> sub
-    
+      
     ?term: atom
         | term "*" atom -> mul 
         | term "/" atom -> div
@@ -59,9 +72,8 @@ grammar = """
     ?instructions:  /[^}]+/ -> parsefun
 
     %ignore /\/\/.+/
+    %ignore /\/\*[\w\W]*\*\//
     %ignore /\s+/
         
-
-    
 
 """
