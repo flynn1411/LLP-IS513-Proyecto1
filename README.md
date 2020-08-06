@@ -21,7 +21,8 @@
     + ~~Funciones ( 2 parámetros)~~ 
     + ~~Length de cualquier objeto~~
     + ~~If Else~~
-    + While, for
+    + While
+    + ~~for~~
     + ~~Console.log , console.error(con su color respectivo)~~
 
 ## Objetivos Secundarios
