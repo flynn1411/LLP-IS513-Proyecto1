@@ -14,6 +14,8 @@ file1 = open("ruby.lng", "r")
 content = file1.read()
 file1.close()
 
+print("\n\n%s\n\n"%content)
+
 parser.parse(content)
 
 """

@@ -11,18 +11,17 @@
 
 //Comienzo de gramática
 ?start: statement+
+    | statement "EOF"
 
 //Definición de una instrucción
-?statement: identifier "=" expression "\n"?
-    | /puts/ "("? string ")"? "\n"?
-    | identifier "=" null "\n"?
-//    | ifstatement
+?statement: identifier "=" expression
+    | /puts/ "("? string ")"?
+    | identifier "=" null
+    | "if" booleanexpression "\n"? identifier "=" expression "\n"? "end"
 
 //Definición de una expresión
 ?expression: arithmeticexpression
     | booleanexpression
-
-//?ifstatement: "if" expression
 
 ?booleanexpression: booleanatom
     | expression "==" expression
@@ -68,3 +67,4 @@
     | "#" /[^\n]*/
     | "/comment" /[\w\W]*/ "uncomment/"
     | "=begin" /[\w\W]*/ "=end"
+    | "\n"
