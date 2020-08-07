@@ -10,13 +10,14 @@ parser = Lark.open('ruby.lark', parser='lalr')
 
 fileName = sys.argv[1:][0]
 
-file1 = open("ruby.lng", "r")
+file1 = open(fileName, "r")
 content = file1.read()
 file1.close()
 
 print("\n\n%s\n\n"%content)
 
-parser.parse(content)
+parser.parse("%s\n"%content)
+#parser.parse(content)
 
 """
 lines = file1.readlines()
