@@ -3,57 +3,64 @@
 // @date 03-08-2020
 // @version 0.1
 
-?start: exp+ 
+?start: exp+
 
-?exp: identifier "=" expresion ";" -> assigvar
-    | "console" "." "log" "(" expresion ")" ";"
+?exp: identifier "=" expresion ";"
+    | "console" "." "log" "(" expresion ")" ";" 
     | "console" "." "err" "(" expresion ")" ";"
     | "function" identifier "(" parameters ")" "{" instructions "}"
     | "if" "(" expresion ")" "{" instructions "}"
-    | "if" "(" expresion ")" "{" instructions "}" "else" "{" instructions "}"
-    | "for" "(" exp conditionfor increment ")" "{" instructions"}"
+    | "if" "(" expresion ")" "{" instructions "}" "else" "{" instructions "}" 
+    | "for" "(" exp conditionfor increment ")""{" instructions "}"
     | expresion 
+
+?simplesegment: /[^\{\}]+/ 
+
+?r_segment: "{"segment"}"
+
+?segment: (simplesegment|r_segment)+
+
+?instructions: segment
 
 ?conditionfor: atom logicalstmt atom ";"
 
-?logicalstmt: "==" -> logicalequal
-    | ">=" -> logicalmorethan
-    | "<=" -> logicallessthan
-    | ">" -> logicalmore
-    | "<" -> logicalless
+?logicalstmt: "=="
+    | ">="
+    | "<="
+    | ">"
+    | "<"
 
-?parameters: 
+?parameters:
     | identifier
-    | identifier "," parameters -> saveparams
-
+    | identifier "," parameters
+    
 ?arguments:
     | atom
-    | atom "," arguments -> sendarguments
+    | atom "," arguments
 
 ?expresion: aritmeticexpresion
-    | atom "." "length" "(" ")" -> length
-    | identifier "(" arguments ")" ";" -> exefun
+    | atom "." "length" "(" ")"
+    | identifier "(" arguments ")" ";"
     | conditonexpresion    
-    | increment
 
-?increment:  identifier "+" "+"-> incremento
-    | identifier "-" "-" -> decrement
+?increment:  identifier "+" "+"
+    | identifier "-" "-"
 
-?conditonexpresion: expresion "==" aritmeticexpresion -> equal
-    | expresion ">=" aritmeticexpresion -> greaterequal
-    | expresion "<=" aritmeticexpresion -> lesserequal
-    | expresion ">" aritmeticexpresion -> greater
-    | expresion "<" aritmeticexpresion -> lesser
+?conditonexpresion: expresion "==" aritmeticexpresion
+    | expresion ">=" aritmeticexpresion
+    | expresion "<=" aritmeticexpresion
+    | expresion ">" aritmeticexpresion
+    | expresion "<" aritmeticexpresion
 
 ?aritmeticexpresion: term
-    | aritmeticexpresion "+" term -> sum
-    | aritmeticexpresion "-" term -> sub
+    | aritmeticexpresion "+" term
+    | aritmeticexpresion "-" term
 
 ?term: atom
-    | term "*" atom -> mul 
-    | term "/" atom -> div
+    | term "*" atom
+    | term "/" atom
 
-?atom: identifier -> getvalue
+?atom: identifier
     | number
     | string        
 
@@ -64,8 +71,8 @@
 ?string: /"[^"]*"/
     | /'[^']*'/
 
-?instructions:  /[^}]+/ -> parsefun
-
 %ignore /\/\/.+/
+
 %ignore /\/\*[\w\W]*\*\//
+
 %ignore /\s+/

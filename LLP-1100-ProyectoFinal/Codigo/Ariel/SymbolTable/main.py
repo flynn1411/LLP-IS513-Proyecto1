@@ -9,13 +9,15 @@ f = open(fileName,"r")
 fileContents = f.read()
 f.close()
 
-parser = Lark.open("ruby.lark", "lalr")
+parser = Lark.open("javascriptTable.lark", "lalr")
 
 #try:
 tree = parser.parse("%s\n"%fileContents)
 
+print(tree.pretty())
+"""
 for child in tree.children:
     print("\n\n%s\n\n"%child)
-
+"""
 #except Exception:
 #    print(Exception)
