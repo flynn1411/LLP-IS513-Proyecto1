@@ -17,16 +17,16 @@ grammar = """
     //Axioma inicial
     ?start: exp+
 
-    //Comentarios
+    // Definición de Comentarios
     ?comments: "#" stringcomments
         | ":'" stringcomments+  "'"
 
-    // Expresiones
+    // Definición de funciones
     ?exp: "#!/bin/bash"
         | comments
-        | "echo" string "$"var
+        | "echo" string "$" var
         | "echo" string
-        | "echo" "$"var
+        | "echo" "$" var
         | var "=" string
         | var "=" "$"? var
         | "let"? var "=" aritmeticoperation
@@ -36,21 +36,24 @@ grammar = """
         | flowcontrol
         | functions
 
+    // Definición de funciones
     ?functions: "function" var"()" "{" sentence "}"
         | var"()" "{" sentence "}"
 
+    // Definición de estructuras de control de flujo
     ?flowcontrol: "if" "[" condition "];" "then" sentence "fi"
         | "else" sentence
-        | "elif" sentence
+        | "elif" "[" condition "];" "then" sentence
         | "for""((" var "=" number ";" var logicoperator number ";" var accumulator "))" "do" sentence "done"
         | "for" var "in" "$"var ":" "do" sentence "done"
         | "while" "[" condition "];" "do" sentence "done"
         | "until" "[" condition "];" "do" sentence "done"
 
+    // Definición de Sentencias para las estructuras de control de flujo
     ?sentence: exp
         | var "=" "$" "((" functionsentences "))"
         | comments sentence
-        | "echo" string "$"var sentence
+        | "echo" string "$" var sentence
         | "echo" string sentence
         | "echo" "$"var sentence
         | var "=" "$" "((" functionsentences "))" sentence
@@ -58,23 +61,27 @@ grammar = """
         | "let"? var "=" aritmeticoperation sentence
         | var "=""$"? boolean sentence
         | var "=" nulo sentence
-        | var "=" "$"var sentence
+        | var "=" "$" var sentence
         | flowcontrol sentence
     
+    // Definición de una condición para la estructura de control de flujo
     ?condition: "$"var logicoperator comparisonvariable
 
-
+    // Definición de operaciones aritméticas en el llamado a una función
     ?functionsentences: atomfunctionsentences
         | functionsentences "+" atomfunctionsentences
         | functionsentences "-" atomfunctionsentences
 
+    // Definición de un átomo para la función
     ?atomfunctionsentences: "$" var
         | "$"? number
         | atomfunctionsentences "*" "$"var
 
+    // Definición de un operador lógico
     ?logicoperator: numericlogicoperator
         | alfanumericlogicoperator
 
+    // Definición de un operador lógico para caracteres numéricos
     ?numericlogicoperator: "=="
         | "-lt"
         | "-le"
@@ -85,6 +92,7 @@ grammar = """
         | ">="
         | "<="
 
+    //  Definición de un operador lógico para caracteres alfanuméricos
     ?alfanumericlogicoperator: "="
         | "!="
         | ">"
@@ -92,6 +100,7 @@ grammar = """
         | "-n"
         | "-z"
 
+    // Definición de la variable de comparación en una estructura de control
     ?comparisonvariable: number
         | string
         | var
@@ -107,6 +116,7 @@ grammar = """
         | atom "/" number
         | "(" group ")"
 
+    //Definición de operadores aritméticos entre parentesis
     ?group: aritmeticoperation
     
     //Definición de una cadena en comentarios
