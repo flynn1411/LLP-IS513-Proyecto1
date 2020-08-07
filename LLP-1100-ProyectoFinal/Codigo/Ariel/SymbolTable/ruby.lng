@@ -1,0 +1,40 @@
+n = 2
+a = n
+
+suma = 14 + 2.34
+
+mult = 98*69
+
+div = (2+1)/1
+
+#comentario de una linea
+
+=begin
+afuabfuas
+asnfiasnofshnofs
+oafnaonfqoaiwf
+=end
+
+while condition
+    hola = "mundo"
+
+    node = nil
+end
+
+for i in 3
+    puts "hola Mundo"
+    variable = 2+3
+end
+
+if n<2
+    factorial = 1
+    newFactorial = factorial
+
+    puts("Hola Mundo")
+end
+
+bool = 2+3 > 1+1 
+
+bool2 = bool == True
+
+str = "Hola Mundo"
