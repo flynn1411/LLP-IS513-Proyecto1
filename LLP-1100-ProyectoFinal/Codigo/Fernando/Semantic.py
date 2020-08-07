@@ -225,6 +225,15 @@ class Semantic(Transformer):
         ):
             return True
 
+#! retornar valores vacios
+    def none(self):
+        return None
+
+#! Guarda los argumentos de la ejecucion de una función
+    def sendargument(self,arg):
+        val,_ = self.parseToken(arg)
+        return [val]
+
     def sendarguments(self, val1, val2):
         if(type(val2) == list ):
             parameters = val2[:]
@@ -244,7 +253,10 @@ class Semantic(Transformer):
         
         return parameters
 
-#! Guardar los parametros de una funcion
+#! Guardar los parametros de la declaración de una funcion
+    def saveparam(self, param):
+        return ["%s"%param]
+    
     def saveparams(self,param1, param2):
         parameters = []
         if(param1 and param2):            
@@ -267,11 +279,12 @@ class Semantic(Transformer):
 
 #! Limpiar las instrucciones de una funcion
     def parsefun(self, expresions):
+        #print("---------"*5)
+        #print(expresions)
         return ("%s" % expresions).strip()
 
 #! Ejecucuion de una funcion
     def exefun(self, name, arguments):
-        
         if type(arguments) == list:
             arguments.reverse()
 
@@ -279,8 +292,9 @@ class Semantic(Transformer):
         parameters = self.instructions[name]["params"]
         add = ""
 
-        for i in range(len(parameters)):
-            add += "%s = %s;\n"%(parameters[i],arguments[i])     
+        if(type(parameters) == list):
+            for i in range(len(parameters)):
+                add += "%s = %s;\n"%(parameters[i],arguments[i])     
 
         text = "%s%s"%(add,text)
 
@@ -397,3 +411,18 @@ class Semantic(Transformer):
     
     def decrement(self,name):
         return "--"
+
+    def parser_segment(self,*segments):
+        
+        text = " "
+        for seg in segments:
+            text += "{ %s }" % seg
+    
+        return text
+
+    def joinsegments(self,*segments):
+        text = " "
+        for seg in segments:
+            text += "%s" % seg
+        
+        return text
