@@ -1,9 +1,15 @@
 function factorial(n){
-
-    return n*2;
+    if (n==1){
+        if(true){
+            return 1;  
+        }
+    } 
+    if (n<1){
+        return 1;  
+    } 
+    return n*factorial(n-1);
 }
 
-n = 2;
+   
+n=5;
 console.log(factorial(n));
-
-

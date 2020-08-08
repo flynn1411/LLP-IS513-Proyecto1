@@ -298,8 +298,15 @@ class Semantic(Transformer):
         text = "%s%s"%(add,text)
 
     #? Ejecutar las instrucciones
-        self.subProgram(text)
         
+        try:
+            self.subProgram(text)
+        except Exception as e:
+            if ("%s" % e == 'Exit'):
+                pass
+            else:
+                print("funError: %s" % e)
+    
         returnValue = self.returnValue
         self.returnValue = None
 
@@ -340,7 +347,10 @@ class Semantic(Transformer):
         try:
             language(sample)
         except Exception as e:
-            print("Error: %s" % e)
+            if ("%s" % e == 'Exit'):
+                raise Exception("Exit")
+            else:
+                print("subError: %s" % e)
 
 #! While
     
@@ -504,6 +514,7 @@ class Semantic(Transformer):
 
     def returnop(self, value):
         self.returnValue = value
+        raise Exception("Exit")
 
     def increment(self,name):
         self.variables[name] = self.variables[name] + 1
