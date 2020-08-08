@@ -15,16 +15,19 @@ grammar = """
         | "function" identifier "(" parameters ")" "{" instructions "}" -> savefun
         | "if" "(" expresion ")" "{" instructions "}" -> ifstmt
         | "if" "(" expresion ")" "{" instructions "}" "else" "{" instructions "}"  -> ifelsestmt
-        | "for" "(" exp conditionfor increment ")""{" instructions "}" -> forstmt
-        | expresion 
-        
-    
-    ?simplesegment: /[^\{\}]+/  -> parsefun
-    ?r_segment: "{"segment"}" -> parser_segment
-    ?segment: (simplesegment|r_segment)+ -> joinsegments
-    ?instructions: segment -> parsefun
+        | "for" "(" exp conditionfor acumulatorfor ")""{" instructions "}" -> forstmt
+        | "while" "(" conditionwhile ")" "{" instructions "}" -> whilestmt
+        | expresion ";"
+        | acumulator ";"
+        | "return" expresion ";" -> returnop
+
+    ?conditionwhile: identifier
+        | atomwhile logicalstmt atomwhile ->  condionwhilecomp
 
     ?conditionfor: atom logicalstmt atom ";" -> condionforcomp
+    
+    ?acumulator: identifier "+" "+" -> increment
+        | identifier "-" "-" -> decrement
     
     ?logicalstmt: "==" -> logicalequal
         | ">=" -> logicalmorethan
@@ -37,16 +40,16 @@ grammar = """
         | identifier "," parameters -> saveparams
        
     ?arguments: -> none
-        | atom -> sendargument
-        | atom "," arguments -> sendarguments
+        | expresion -> sendargument
+        | expresion "," arguments -> sendarguments
+
 
     ?expresion: aritmeticexpresion
         | atom "." "length" "(" ")" -> length
-        | identifier "(" arguments ")" ";" -> exefun
         | conditonexpresion    
 
-    ?increment:  identifier "+" "+"-> incremento
-        | identifier "-" "-" -> decrement
+    ?acumulatorfor:  identifier "+" "+"-> incrementfor
+        | identifier "-" "-" -> decrementfor
 
     ?conditonexpresion: expresion "==" aritmeticexpresion -> equal
         | expresion ">=" aritmeticexpresion -> greaterequal
@@ -65,7 +68,21 @@ grammar = """
 
     ?atom: identifier -> getvalue
         | number
+        | string 
+        | identifier "(" arguments ")"  -> exefun
+
+    ?atomwhile: identifier
+        | number
         | string        
+        
+
+    ?simplesegment: /[^\{\}]+/  -> parsefun
+
+    ?r_segment: "{"segment"}" -> parser_segment
+
+    ?segment: (simplesegment|r_segment)+ -> joinsegments
+
+    ?instructions: segment -> parsefun
 
     ?identifier: /[a-zA-z]\w*/
 

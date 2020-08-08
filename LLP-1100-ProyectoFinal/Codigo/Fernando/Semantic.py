@@ -19,14 +19,13 @@ class Semantic(Transformer):
     def __init__(self):
     #?Contenedores 
         self.variables = {}
-        self.instructions = {}
+        self.functions = {}
+        self.returnValue = None
    
 #! Assignar valores a una variable 
     def assigvar(self,name,value):
-
     #Verifica el tipo de variable 
         value,typeVal = self.parseToken(value)
-
         if (typeVal == "string"):
             self.variables[name] = self.cleanParam(value)
         else:
@@ -173,7 +172,7 @@ class Semantic(Transformer):
     def parseToken(self,value):
         
         #? Verifica enteros o Floantes 
-        if ((type(value) == float) or (re.match(r"\d+(\.\d+)?",value))):
+        if ((type(value) == float) or (type(value) == int) or (re.match(r"\d+(\.\d+)?",value))):
             return (float(value),"float")
         
         #? Verifica booleano Verdadero 
@@ -273,9 +272,9 @@ class Semantic(Transformer):
     def savefun(self, name, params, instructions):
         if type(params) == list:
             params.reverse()
-        self.instructions[name] = {}
-        self.instructions[name]["instructions"] = instructions
-        self.instructions[name]["params"] = params
+        self.functions[name] = {}
+        self.functions[name]["instructions"] = instructions
+        self.functions[name]["params"] = params
 
 #! Limpiar las instrucciones de una funcion
     def parsefun(self, expresions):
@@ -288,8 +287,8 @@ class Semantic(Transformer):
         if type(arguments) == list:
             arguments.reverse()
 
-        text = self.instructions[name]["instructions"]
-        parameters = self.instructions[name]["params"]
+        text = self.functions[name]["instructions"]
+        parameters = self.functions[name]["params"]
         add = ""
 
         if(type(parameters) == list):
@@ -298,14 +297,17 @@ class Semantic(Transformer):
 
         text = "%s%s"%(add,text)
 
-        #? Ejecutar las instrucciones
+    #? Ejecutar las instrucciones
         self.subProgram(text)
-    
-    #def rtn(self,expersion):
-        #return expersion
+        
+        returnValue = self.returnValue
+        self.returnValue = None
+
+        return returnValue
 
 #! Obtener el tamaño de una cadena o numero
     def length(self,value):
+        value = "%s"%value
         return len(value)
     
 #! Codicional if 
@@ -340,6 +342,80 @@ class Semantic(Transformer):
         except Exception as e:
             print("Error: %s" % e)
 
+#! While
+    
+    def whilestmt(self,condition,instruccion):
+
+        if type(condition) == tuple:
+           
+            var = condition[0]
+            con = condition[1]
+            var2 = condition[2]
+
+            varValue = condition[0]
+            varValue2 = condition[2]
+            
+            if( type(var) == str):
+                varValue = self.variables[var]
+
+            if( type(var2) == str):
+                varValue2 = self.variables[var2]
+            
+        
+            keep = self.conditionalEval(varValue,con,varValue2)
+
+            while(keep):
+
+                self.subProgram(instruccion)
+                
+                varValue = condition[0]
+                varValue2 = condition[2]
+            
+                if( type(var) == str):
+                    varValue = self.variables[var]
+
+                if( type(var2) == str):
+                    varValue2 = self.variables[var2]
+
+                keep = self.conditionalEval(varValue,con,varValue2)          
+
+        
+
+        else:
+            var = condition
+            varValue = self.variables[var]
+
+            if varValue == 'true': 
+                keep = True
+            else: 
+                keep = False
+                
+            while(keep):
+                self.subProgram(instruccion)
+                varValue = self.variables[var]
+                if varValue == 'true': 
+                    keep = True
+                else: 
+                    keep = False
+                    
+
+
+        
+            
+                
+        
+    def condionwhilecomp(self,var,con,var2):
+        var = "%s"%var
+        con = "%s"%con
+        var2 = "%s"%var2
+
+        var,_ = self.parseToken(var)
+        con,_ = self.parseToken(con)
+        var2,_ = self.parseToken(var2)
+
+
+        return (var,con,var2)
+        
 
     def condionforcomp(self, var1, cond, var2):
         
@@ -406,10 +482,10 @@ class Semantic(Transformer):
         return True
 
 #! Incrementar 
-    def incremento(self,name):
+    def incrementfor(self,name):
         return "++"
     
-    def decrement(self,name):
+    def decrementfor(self,name):
         return "--"
 
     def parser_segment(self,*segments):
@@ -424,5 +500,13 @@ class Semantic(Transformer):
         text = " "
         for seg in segments:
             text += "%s" % seg
-        
         return text
+
+    def returnop(self, value):
+        self.returnValue = value
+
+    def increment(self,name):
+        self.variables[name] = self.variables[name] + 1
+    
+    def decrement(self,name):
+        self.variables[name] = self.variables[name] - 1
