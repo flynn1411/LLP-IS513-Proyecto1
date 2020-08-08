@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 import re
-from lark import Transformer, v_args
+from lark import Lark, Transformer, v_args
 
 """
     Tabla:
@@ -33,6 +33,18 @@ class TableGenerator(Transformer):
 
         else:
             quit("La variable %s no existe."%name)
+
+    def add(self, A, B):
+        return float(A)+float(B)
+
+    def add(self, A, B):
+        return float(A)-float(B)
+
+    def add(self, A, B):
+        return float(A)+float(B)
+
+    def add(self, A, B):
+        return float(A)+float(B)
 
     def tokenize(self, lexeme):
         tokenType = ""

@@ -48,8 +48,8 @@ grammar = """
         | IDENTIFIER "(" arguments ")" ";"
         | conditonexpresion    
 
-    increment:  IDENTIFIER "+" "+"
-        | IDENTIFIER "-" "-"
+    increment:  IDENTIFIER "+" "+" ->  increment
+        | IDENTIFIER "-" "-" -> decrement
 
     conditonexpresion: expresion "==" aritmeticexpresion
         | expresion ">=" aritmeticexpresion
@@ -59,12 +59,12 @@ grammar = """
         
 
     aritmeticexpresion: term
-        | aritmeticexpresion "+" term
-        | aritmeticexpresion "-" term
+        | aritmeticexpresion "+" term -> add
+        | aritmeticexpresion "-" term -> sub
 
     term: atom
-        | term "*" atom
-        | term "/" atom
+        | term "*" atom -> mult
+        | term "/" atom -> div
 
     atom: IDENTIFIER -> getvalue
         | NUMBER

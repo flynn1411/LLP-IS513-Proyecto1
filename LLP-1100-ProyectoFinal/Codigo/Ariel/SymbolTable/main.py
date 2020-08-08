@@ -2,8 +2,8 @@
 
 from lark import Lark, Tree, Token, Transformer
 from tabulate import tabulate
-from tableGenerator import TableGenerator
-from Grammar import *
+from tableGenerator2 import TableGenerator2
+from grammar2 import *
 import sys
 
 fileName = sys.argv[1:][0]
@@ -12,45 +12,48 @@ f = open(fileName,"r")
 fileContents = f.read()
 f.close()
 
-tableGen = TableGenerator()
+tableGen = TableGenerator2()
 parser = Lark(grammar, parser="lalr", transformer=tableGen)
 
 #try:
 parseTree = parser.parse("%s\n"%fileContents)
 
-print(tableGen.variables)
+#print(parseTree)
 
-"""
 def getTokenInstances(tree, type, value):
-    results =[]
+    results = ""
 
     if isinstance(tree, Tree):
         for child in tree.children:
 
             if isinstance(child, Tree):
-                childArray = getTokenInstances(child, type, value)
-                if len(childArray) > 0:
-                    results += childArray
+                innerSearch = getTokenInstances(child, type, value)
+                if len(innerSearch) > 0:
+                    results += innerSearch
 
             elif isinstance(child, Token) and ( child.type == type and child.value == value):
-                results.append(child)
+                results += "%s," % child.line
 
     elif isinstance(child, Token) and ( child.type == type and child.value == value):
-        results.append(child)
+        results += "%s," % child.line
 
     return results
 
-tokens = getTokenInstances(parseTree, "IDENTIFIER", "hola")
-
 table = []
-
-for token in tokens:
+for key in tableGen.variables.keys():
     row = []
 
-    row.append(token.value)
-    row.append(token.line)
-    row.append(token.type)
+    row.append(key)
+    row.append(
+        getTokenInstances(
+            parseTree, "IDENTIFIER", key
+        )
+    )
+
+    row.append(tableGen.variables[key]["value"])
+    row.append(tableGen.variables[key]["type"])
 
     table.append(row)
 
-print(tabulate(table, headers=["nombre", "linea", "valor"]))"""
+
+print(tabulate(table, headers=["Nombre", "Lineas", "Valor", "Tipo de Dato"]))
