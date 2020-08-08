@@ -11,15 +11,24 @@ grammar = """
 
     ?exp: identifier "=" expresion ";" -> assigvar
         | "console" "." "log" "(" expresion ")" ";" -> print
-        | "console" "." "err" "(" expresion ")" ";" -> printerr
+        | "console" "." "error" "(" expresion ")" ";" -> printerr
         | "function" identifier "(" parameters ")" "{" instructions "}" -> savefun
-        | "if" "(" expresion ")" "{" instructions "}" -> ifstmt
-        | "if" "(" expresion ")" "{" instructions "}" "else" "{" instructions "}"  -> ifelsestmt
+        | ifs     
         | "for" "(" exp conditionfor acumulatorfor ")""{" instructions "}" -> forstmt
         | "while" "(" conditionwhile ")" "{" instructions "}" -> whilestmt
         | expresion ";"
         | acumulator ";"
         | "return" expresion ";" -> returnop
+
+    ?ifs: ifbracket 
+        | "if" "(" expresion ")" "{" instructions "}" -> ifstmt
+        | "if" "(" expresion ")" "{" instructions "}" "else" "{" instructions "}"  -> ifelsestmt
+
+    ?ifbracket: "if" "(" expresion ")" instructionsoneline -> ifstmt
+        | "if" "(" expresion ")" instructionsoneline "else" instructionsoneline -> ifelsestmt
+
+    ?show: expresion
+        | show "," expresion-> concat
 
     ?conditionwhile: identifier
         | atomwhile logicalstmt atomwhile ->  condionwhilecomp
@@ -91,6 +100,7 @@ grammar = """
     ?string: /"[^"]*"/
         | /'[^']*'/
 
+    ?instructionsoneline: /[^(\\n)^\{]+/
 
     %ignore /\/\/.+/
     %ignore /\/\*[\w\W]*\*\//

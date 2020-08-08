@@ -45,7 +45,22 @@ class Semantic(Transformer):
             print(self.cleanParam(item))
         else:
             print(item)
+
+    def concat(self, var1, var2):
+       
+        if var1 in self.variables.keys():
+            var1 = self.variables[var1]
+        else:
+            var1,_ = self.parseToken(var1)
+        
+        if var2 in self.variables.keys():
+            var2 =self.variables[var2]
+        else:
+            var2,_ = self.parseToken(var2)
             
+
+        return "%s %s" % (var1, var2)
+
 #! console.err de Java script
     def printerr(self,item):
 
@@ -302,6 +317,7 @@ class Semantic(Transformer):
         try:
             self.subProgram(text)
         except Exception as e:
+
             if ("%s" % e == 'Exit'):
                 pass
             else:

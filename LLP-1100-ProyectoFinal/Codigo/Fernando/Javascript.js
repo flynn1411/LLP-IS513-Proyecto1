@@ -1,15 +1,9 @@
-function factorial(n){
-    if (n==1){
-        if(true){
-            return 1;  
-        }
-    } 
-    if (n<1){
-        return 1;  
-    } 
-    return n*factorial(n-1);
+function isInStock(n,m){
+    if(n<m){
+        console.log("Hay en Stock");
+    }else{
+        console.error("No hay en Stock");
+    }
 }
 
-   
-n=5;
-console.log(factorial(n));
+isInStock(1,2);
