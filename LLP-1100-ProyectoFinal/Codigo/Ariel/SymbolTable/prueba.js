@@ -13,6 +13,6 @@ cadena = "Esta es una cadena";
 numero = "ahora es una cadena";
 
 
-cadena = a;
+//cadena = a;
 
 cadena = 5;

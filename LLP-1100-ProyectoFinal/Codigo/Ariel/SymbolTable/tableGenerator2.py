@@ -22,7 +22,7 @@ class TableGenerator2(Transformer):
         self.functions = {}
         self.returnValue = None
 
-#! Assignar valores a una variable 
+#! Asignar valores a una variable 
     def assigvar(self,name,value):
     #Verifica el tipo de variable 
         varInfo = self.tokenize(self.parseToken(value))
