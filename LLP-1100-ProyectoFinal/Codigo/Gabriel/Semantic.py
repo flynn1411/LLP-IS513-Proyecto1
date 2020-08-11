@@ -5,7 +5,7 @@
     @date 03-08-2020
     @version 0.1
 """
-import random
+
 import re
 from lark import Lark,Transformer,v_args
 from Grammar import *
@@ -16,13 +16,11 @@ from Grammar import *
 class Semantic(Transformer):
     
 #! Constructor 
-    def __init__(self, rgb = False, mode = True):
+    def __init__(self):
     #?Contenedores 
         self.variables = {}
         self.functions = {}
         self.returnValue = None
-        self.rgb = rgb
-        self.mode = mode
    
 #! Assignar valores a una variable 
     def assigvar(self,name,value):
@@ -37,16 +35,16 @@ class Semantic(Transformer):
 
 #! console.log de Java script
     def print(self,*item):
-        if self.mode:
-            item = "%s"%item
+       
+        item = "%s"%item
 
-        #Verifica el tipo de variable 
-            item,typeVal = self.parseToken(item)
+    #Verifica el tipo de variable 
+        item,typeVal = self.parseToken(item)
 
-            if (typeVal == "string"):
-                print(self.cleanParam(item))
-            else:
-                print(item)
+        if (typeVal == "string"):
+            print(self.cleanParam(item))
+        else:
+            print(item)
 
     def concat(self, var1, var2):
        
@@ -60,26 +58,22 @@ class Semantic(Transformer):
         else:
             var2,_ = self.parseToken(var2)
             
+
         return "%s %s" % (var1, var2)
 
 #! console.err de Java script
     def printerr(self,item):
-        if self.mode:
-            item = "%s"%item
-            color = 31
-            if(self.rgb == True):
-                array = [31,32,33,34,35,36]
-                color = random.choice(array) 
 
-            
-        #Verifica el tipo de variable 
-            item,typeVal = self.parseToken(item)
+        item = "%s"%item
 
-        #Color a los print
-            if (typeVal == "string"):
-                print("\033[1;%s;1m %s \033[0m" %(color,self.cleanParam(item)))
-            else:
-                print("\033[1;%s;1m %s \033[0m" %(color,item))
+    #Verifica el tipo de variable 
+        item,typeVal = self.parseToken(item)
+
+    #Color a los print
+        if (typeVal == "string"):
+            print("\033[1;31;1m %s \033[0m" %self.cleanParam(item))
+        else:
+            print("\033[1;31;1m %s \033[0m" %item)
 
 #! Comparar si dos valores son iguales 
     def equal(self,valueA,valueB):
@@ -361,7 +355,6 @@ class Semantic(Transformer):
 #! Subprograma para ejecutar instrucciones
     def subProgram(self,text):
         
-        
         #? llamado recursivo
         parser = Lark(grammar,parser="lalr",transformer=self)
         language = parser.parse
@@ -430,6 +423,12 @@ class Semantic(Transformer):
                     keep = True
                 else: 
                     keep = False
+                    
+
+
+        
+            
+                
         
     def condionwhilecomp(self,var,con,var2):
         var = "%s"%var

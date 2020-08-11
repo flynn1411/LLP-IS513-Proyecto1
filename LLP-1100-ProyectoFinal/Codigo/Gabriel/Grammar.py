@@ -1,53 +1,110 @@
-# -*- coding: utf-8 -*-
+"""
+    @author Fernando y Gabriel
+    @date 03-08-2020
+    @version 0.1
+"""
 
+#Definicion de la gramatica de JavaScript
 grammar = """
-    //El axioma inicial
-    ?start: exp+
-    
-    // Definición de una arithmeticxpr
-    ?exp: var "=" arithmeticexpr ";" -> assignvar  
-        | printfun ";" 
 
-    ?printfun: "print" arithmeticexpr -> print
-        | "print" "(" string "%" "(" parameters ")" ")" -> printf
-        | "print" string "%" "(" parameters ")" -> printf
+    ?start: exp+ 
+
+    ?exp: identifier "=" expresion ";" -> assigvar
+        | "console" "." "log" "(" expresion ")" ";" -> print
+        | "console" "." "error" "(" expresion ")" ";" -> printerr
+        | "function" identifier "(" parameters ")" "{" instructions "}" -> savefun
+        | ifs     
+        | "for" "(" exp conditionfor acumulatorfor ")""{" instructions "}" -> forstmt
+        | "while" "(" conditionwhile ")" "{" instructions "}" -> whilestmt
+        | expresion ";"
+        | acumulator ";"
+        | "return" expresion ";" -> returnop
+
+    ?ifs: ifbracket 
+        | "if" "(" expresion ")" "{" instructions "}" -> ifstmt
+        | "if" "(" expresion ")" "{" instructions "}" "else" "{" instructions "}"  -> ifelsestmt
+
+    ?ifbracket: "if" "(" expresion ")" instructionsoneline -> ifstmt
+        | "if" "(" expresion ")" instructionsoneline "else" instructionsoneline -> ifelsestmt
+
+    ?show: expresion
+        | show "," expresion-> concat
+
+    ?conditionwhile: identifier
+        | atomwhile logicalstmt atomwhile ->  condionwhilecomp
+
+    ?conditionfor: atom logicalstmt atom ";" -> condionforcomp
     
-    // Definición de operación aritmética
-    ?arithmeticexpr: term
-        | term "+" arithmeticexpr -> plusop
-        | arithmeticexpr "-" term -> sub
+    ?acumulator: identifier "+" "+" -> increment
+        | identifier "-" "-" -> decrement
+    
+    ?logicalstmt: "==" -> logicalequal
+        | ">=" -> logicalmorethan
+        | "<=" -> logicallessthan
+        | ">" -> logicalmore
+        | "<" -> logicalless
+    
+    ?parameters: -> none
+        | identifier -> saveparam
+        | identifier "," parameters -> saveparams
+       
+    ?arguments: -> none
+        | expresion -> sendargument
+        | expresion "," arguments -> sendarguments
+
+
+    ?expresion: aritmeticexpresion
+        | atom "." "length" "(" ")" -> length
+        | conditonexpresion    
+
+    ?acumulatorfor:  identifier "+" "+"-> incrementfor
+        | identifier "-" "-" -> decrementfor
+
+    ?conditonexpresion: expresion "==" aritmeticexpresion -> equal
+        | expresion ">=" aritmeticexpresion -> greaterequal
+        | expresion "<=" aritmeticexpresion -> lesserequal
+        | expresion ">" aritmeticexpresion -> greater
+        | expresion "<" aritmeticexpresion -> lesser
         
-    ?term: factor
-        | term "*" factor -> mul
-        | term "/" factor -> div
-        
-    
-    ?factor: atom
-        | "(" arithmeticexpr ")"
 
-    ?atom:number
-        | var -> getvar
-        | string  
+    ?aritmeticexpresion: term
+        | aritmeticexpresion "+" term -> sum
+        | aritmeticexpresion "-" term -> sub
 
-    //Parameters
-    ?parameters: 
-        | var "," parameters -> arguments
-        | string "," parameters -> arguments
-        | number "," parameters -> arguments
-        | var 
+    ?term: atom
+        | term "*" atom -> mul 
+        | term "/" atom -> div
+
+    ?atom: identifier -> getvalue
+        | number
         | string 
-        | number 
-    
-    // Definición de una cadena
+        | identifier "(" arguments ")"  -> exefun
+
+    ?atomwhile: identifier
+        | number
+        | string        
+        
+
+    ?simplesegment: /[^\{\}]+/  -> parsefun
+
+    ?r_segment: "{"segment"}" -> parser_segment
+
+    ?segment: (simplesegment|r_segment)+ -> joinsegments
+
+    ?instructions: segment -> parsefun
+
+    ?identifier: /[a-zA-z]\w*/
+
+    ?number: /\d+(\.\d+)?/
+
     ?string: /"[^"]*"/
         | /'[^']*'/
 
-    // Definición de una variable
-    ?var: /[a-zA-Z]\w*/
+    ?instructionsoneline: /[^(\\n)^\{]+/
 
-    // Definición de un nómero
-    ?number: /\d+(\.\d+)?/
-
-    //Ignorar espacios, saltos de línea y tabulados
+    %ignore /\/\/.+/
+    %ignore /\/\*[\w\W]*\*\//
     %ignore /\s+/
+        
+
 """

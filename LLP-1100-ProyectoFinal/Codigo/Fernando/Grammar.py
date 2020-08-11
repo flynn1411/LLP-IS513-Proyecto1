@@ -6,37 +6,34 @@
 
 #Definicion de la gramatica de JavaScript
 grammar = """
-
+ 
     ?start: exp+ 
 
-    ?exp: identifier "=" expresion ";" -> assigvar
-        | "console" "." "log" "(" expresion ")" ";" -> print
-        | "console" "." "error" "(" expresion ")" ";" -> printerr
-        | "function" identifier "(" parameters ")" "{" instructions "}" -> savefun
-        | ifs     
+    ?exp: IDENTIFIER "=" expresion ";" -> assigvar
+        | "console" "." "log" "(" show ")" ";" -> print
+        | "console" "." "error" "(" show ")" ";" -> printerr
+        | "function" IDENTIFIER "(" parameters ")" "{" instructions "}" -> savefun  
+        | "if" "(" expresion ")" "{" instructions "}" -> ifstmt
+        | "if" "(" expresion ")" INSTRUCIONONELINE -> ifstmt
+        | "if" "(" expresion ")" INSTRUCIONONELINE "else" INSTRUCIONONELINE -> ifelsestmt
+        | "if" "(" expresion ")" "{" instructions "}" "else" "{" instructions "}"  -> ifelsestmt
         | "for" "(" exp conditionfor acumulatorfor ")""{" instructions "}" -> forstmt
         | "while" "(" conditionwhile ")" "{" instructions "}" -> whilestmt
         | expresion ";"
         | acumulator ";"
         | "return" expresion ";" -> returnop
 
-    ?ifs: ifbracket 
-        | "if" "(" expresion ")" "{" instructions "}" -> ifstmt
-        | "if" "(" expresion ")" "{" instructions "}" "else" "{" instructions "}"  -> ifelsestmt
-
-    ?ifbracket: "if" "(" expresion ")" instructionsoneline -> ifstmt
-        | "if" "(" expresion ")" instructionsoneline "else" instructionsoneline -> ifelsestmt
 
     ?show: expresion
         | show "," expresion-> concat
 
-    ?conditionwhile: identifier
+    ?conditionwhile: IDENTIFIER
         | atomwhile logicalstmt atomwhile ->  condionwhilecomp
 
     ?conditionfor: atom logicalstmt atom ";" -> condionforcomp
     
-    ?acumulator: identifier "+" "+" -> increment
-        | identifier "-" "-" -> decrement
+    ?acumulator: IDENTIFIER "+" "+" -> increment
+        | IDENTIFIER "-" "-" -> decrement
     
     ?logicalstmt: "==" -> logicalequal
         | ">=" -> logicalmorethan
@@ -45,8 +42,8 @@ grammar = """
         | "<" -> logicalless
     
     ?parameters: -> none
-        | identifier -> saveparam
-        | identifier "," parameters -> saveparams
+        | IDENTIFIER -> saveparam
+        | IDENTIFIER "," parameters -> saveparams
        
     ?arguments: -> none
         | expresion -> sendargument
@@ -57,8 +54,8 @@ grammar = """
         | atom "." "length" "(" ")" -> length
         | conditonexpresion    
 
-    ?acumulatorfor:  identifier "+" "+"-> incrementfor
-        | identifier "-" "-" -> decrementfor
+    ?acumulatorfor:  IDENTIFIER "+" "+"-> incrementfor
+        | IDENTIFIER "-" "-" -> decrementfor
 
     ?conditonexpresion: expresion "==" aritmeticexpresion -> equal
         | expresion ">=" aritmeticexpresion -> greaterequal
@@ -75,32 +72,33 @@ grammar = """
         | term "*" atom -> mul 
         | term "/" atom -> div
 
-    ?atom: identifier -> getvalue
-        | number
-        | string 
-        | identifier "(" arguments ")"  -> exefun
+    ?atom: IDENTIFIER -> getvalue
+        | NUMBER
+        | STRING 
+        | IDENTIFIER "(" arguments ")"  -> exefun
 
-    ?atomwhile: identifier
-        | number
-        | string        
+    ?atomwhile: IDENTIFIER
+        | NUMBER
+        | STRING        
         
 
     ?simplesegment: /[^\{\}]+/  -> parsefun
 
-    ?r_segment: "{"segment"}" -> parser_segment
 
     ?segment: (simplesegment|r_segment)+ -> joinsegments
 
+    ?r_segment: "{"segment"}" -> parser_segment
+
     ?instructions: segment -> parsefun
 
-    ?identifier: /[a-zA-z]\w*/
+    IDENTIFIER: /[a-zA-z]\w*/
 
-    ?number: /\d+(\.\d+)?/
+    NUMBER: /\d+(\.\d+)?/
 
-    ?string: /"[^"]*"/
+    STRING: /"[^"]*"/
         | /'[^']*'/
 
-    ?instructionsoneline: /[^(\\n)^\{]+/
+    INSTRUCIONONELINE: /[^;\{\\n]+;/
 
     %ignore /\/\/.+/
     %ignore /\/\*[\w\W]*\*\//

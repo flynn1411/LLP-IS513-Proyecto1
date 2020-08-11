@@ -1,9 +1,10 @@
-function isInStock(n,m){
-    if(n<m){
-        console.log("Hay en Stock");
-    }else{
-        console.error("No hay en Stock");
-    }
-}
+function factorial(n){
+    if (n == 1) {return 1;}
+    if(n==0) {return 1;}
 
-isInStock(1,2);
+    return n*factorial(n-1);
+}
+/*Esta onda aguanta hasta 44 */
+for(i=0;i<5;i++){
+    console.error("El factorial de",i,":",factorial(i));    
+}
