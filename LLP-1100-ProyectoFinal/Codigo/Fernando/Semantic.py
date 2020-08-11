@@ -67,8 +67,8 @@ class Semantic(Transformer):
         if self.mode:
             item = "%s"%item
             color = 31
-            if(self.rgb == True):
-                array = [31,32,33,34,35,36]
+            array = [31,32,33,34,35,36]
+            if self.rgb:
                 color = random.choice(array) 
 
             
@@ -76,8 +76,18 @@ class Semantic(Transformer):
             item,typeVal = self.parseToken(item)
 
         #Color a los print
-            if (typeVal == "string"):
+            if(item == "Authors"):
+                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"Nombre\t\t|\tNumero de cuenta"))
+                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"-"*40))
+                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"Ana Hernández\t|\t20171001620"))
+                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"Fernando Cortés\t|\t20171030809"))
+                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"Gabriel Escobar\t|\t20181005735"))
+                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"Josue Izaguirre\t|\t20171034157"))
+                
+            
+            elif (typeVal == "string"):
                 print("\033[1;%s;1m %s \033[0m" %(color,self.cleanParam(item)))
+
             else:
                 print("\033[1;%s;1m %s \033[0m" %(color,item))
 
