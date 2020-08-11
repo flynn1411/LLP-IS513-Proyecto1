@@ -6,13 +6,13 @@
     + Debe leer los argumentos de la consola.
     + Ejecutar JS
     + Crear tabla de símbolos JS
-    + Detectar Ruby y Bash
+    + ~~Detectar Ruby y Bash~~ (98%)
 
 - **Gramática**
     + JS(Fernando y Gabriel) 50%
         + Comentarios simples o múltiples (// o /* */)
-    + Bash(Ana)
-    + Ruby(Josué)
+    + ~~Bash(Ana)~~
+    + ~~Ruby(Josué)~~
 
 - **Semántica JS:**
     + ~~Asignación, Cadenas, booleanos, números y nulos~~ 
