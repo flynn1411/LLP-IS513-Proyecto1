@@ -501,7 +501,7 @@ En esta sección se detallan las metas propuestas, avances y logros que se obtuv
 
 ### *Miercóles 29/07/2020:*
 
-Se tuvo la primera reunión de equipo para discusión de proyecto donde también se realizó detenidamente la lectura de todos los requerimientos y objetivos del proyecto. Asímismo se realizó una lista con los objetivos principales para el funcionamiento adecuado del programa, para lo que se distribuyeron las diferentes asignaciones entre los integrantes.
+Se tuvo la primera reunión de equipo[^1] [^2] para discusión de proyecto donde también se realizó detenidamente la lectura de todos los requerimientos y objetivos del proyecto. Asimismo se realizó una lista con los objetivos principales para el funcionamiento adecuado del programa, para lo que se distribuyeron las diferentes asignaciones entre los integrantes.
 
 Los objetivos iniciales fueron los siguientes (con fecha deseada de finalización para el viernes 07 de agosto):
 
@@ -525,7 +525,7 @@ Los objetivos iniciales fueron los siguientes (con fecha deseada de finalizació
   - If, While, for
   - Console.log , console.error(con su color respectivo)
 
-Finalmente, se creó un repositorio en Github para tener lista la estructura de directorios para la entrega de proyecto.
+Finalmente, se creó un repositorio en GitHub para tener lista la estructura de directorios para la entrega de proyecto.
 
 ## *Lunes 03/08/2020:*
 
@@ -533,7 +533,7 @@ Durante el fin de semana, se realizaron investigaciones por parte de cada integr
 
 ## *Martes 04/08/2020:*
 
-Durante la sincróna, se siguió trabajando en los objetivos de cada integrante, se comenzó a probar la gramática y los avances de cada integrante. (Cortés y Gabriel pongan aqui de lo que se acuerden).
+Durante la reunión sincrónica, [^2] [^3] se siguió trabajando en los objetivos de cada integrante, se comenzó a probar la gramática y los avances de cada integrante. (Cortés y Gabriel pongan aqui de lo que se acuerden).
 
 ## *Miercoles 05/08/2020:*
 
@@ -571,17 +571,14 @@ Se siguió avanzado de manera individual en las tareas de cada estudiante y se c
 
 > Aquí se detallarán las actividades realizadas durante el día en cuestión.
 
-## Notas
-
-### 1.
-> Todas las reuniones de forma sincróna por parte de los integrantes del equipo se realizaron a través de la plataforma Discord. (Colocar referencias). Para cualquier otra forma de comunicación, se creó un grupo de WhatsApp con el objetivo de reportar avances o definir reuniones sincrónas.
-
-### 2.
-> El intervalo de tiempo durante el cual se sostenían las reuniones de trabajo variaban entre las 11A.M. - 10P.M.
-
-### 3.
-> Variaba el tiempo de conexión entre cada estudiante de acuerdo a la diferente dispocisión horaria de cada estudiante.
-
 ## Anexos y Evidencias Fotográficas
 
 poner fotos aquí
+
+## Notas
+
+ [^1]: Todas las reuniones de forma sincróna por parte de los integrantes del equipo se realizaron a través de la plataforma Discord. (Colocar referencias). Para cualquier otra forma de comunicación, se creó un grupo de WhatsApp con el objetivo de reportar avances o definir reuniones sincrónas.
+
+ [^2]: El intervalo de tiempo durante el cual se sostenían las reuniones de trabajo variaban entre las 11A.M. - 10P.M.
+
+ [^3]: Variaba el tiempo de conexión entre cada estudiante de acuerdo a la diferente disposición horaria de cada estudiante.
