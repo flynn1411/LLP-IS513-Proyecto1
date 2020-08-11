@@ -2,13 +2,19 @@
 """
 Poner comentarios aquí
 """
-from lark import Lark
+from Core.lark import Lark
 from tabulate import tabulate
 
 class Recognizer:
     def __init__(self):
         self.fileContents = ""
-        self.message = """ """
+        self.header = [
+            ["Intérprete de Lenguajes ILANG"],
+            ["@authors: Ana Hernández, Fernando Córtes, Gabriel Escobar, Josué Izaguirre (Dream Team)"],
+            ["@version: 0.1.0"],
+            ["@fecha: 16/08/2020"]
+            ]
+        self.result = []
 
     def recognize(self, fileContents):
         self.fileContents = fileContents
@@ -16,31 +22,19 @@ class Recognizer:
         bashParser = Lark.open("Core/Grammars/grammarBash.lark", "lalr")
 
         if(self.checkWithParser(rubyParser)):
-            self.message = """
-            \n\n
-            Lenguaje Encontrado: Ruby
-            \n\n
-            Programa:
-            \n\n
-            %s
-"""% self.fileContents
+            self.result.append(["\tLenguaje Detectado:"])
+            self.result.append(["\tRuby"])
+            self.result.append(["\tPrograma Leído:"])
+            self.result.append([fileContents])
 
         elif(self.checkWithParser(bashParser)):
-            self.message = """
-            \n\n
-            Lenguaje Encontrado: Bash
-            \n\n
-            Programa:
-            \n\n
-            %s
-"""% self.fileContents
+            self.result.append(["Lenguaje Detectado"])
+            self.result.append(["Bash"])
+            self.result.append(["Programa Leído:"])
+            self.result.append([fileContents])
 
         else:
-            self.message = """
-            \n\n
-            El Lenguaje no ha podido ser identificado. 
-            \n\n
-"""
+            self.result.append("\nPrograma No Encontrado\n")
 
         return self
 
@@ -52,20 +46,7 @@ class Recognizer:
             return False
 
     def printResult(self):
-        print(self.message)
-
-
-"""
-#reader = (Reader()).read()
-parser = Lark.open('ruby.lark', parser='lalr')
-
-fileName = sys.argv[1:][0]
-
-file1 = open(fileName, "r")
-content = file1.read()
-file1.close()
-
-print("\n\n%s\n\n"%content)
-
-parser.parse("%s\n"%content)
-"""
+        print("\n"*2)
+        print(tabulate(self.header, stralign="center", tablefmt="fancy_grid"))
+        print("\n"*2)
+        print(tabulate(self.result, stralign="left", tablefmt="grid"))

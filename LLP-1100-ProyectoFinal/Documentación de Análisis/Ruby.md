@@ -37,5 +37,6 @@ factorial(6)
 
 #### Tipos de Datos:
 
-Según las especificaciones del proyecto, se aceptan **cadenas**, **booleanos**, **números** y **nulos**
+Según las especificaciones del proyecto, se aceptan:
 
+- ##### Cadenas:

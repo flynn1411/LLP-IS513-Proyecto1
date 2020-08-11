@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from Core.recognizer import *
+from Core.recognizer import Recognizer
+from Core.tableCreator import TableCreator
+from Core.FileReader import FileReader
 import sys, re
 
 arguments = sys.argv[1:]
+
+fileReader = FileReader()
 
 if len(arguments) == 1:
     #Lo de Gabriel y Fernando
@@ -18,17 +22,15 @@ elif len(arguments) == 2:
         re.match(r"--symbols-table", command) and
         re.match(r"[a-zA-Z][a-zA-Z0-9_ ]*.[a-z]{1,6}",fileName)
     ):
-        pass
+        fileContents = fileReader.readFile(fileName)
+        (TableCreator()).createTable("%s"%fileContents).printTable()
 
     #Reconocimiento de lenguajes
     elif (
         re.match(r"--what-language-is-this", command) and
         re.match(r"[a-zA-Z][a-zA-Z0-9_ ]*.[a-z]{1,6}",fileName)
     ):
-        f = open(fileName, "r")
-        fileContents = f.read()
-        f.close()
-
+        fileContents = fileReader.readFile(fileName)
         (Recognizer()).recognize("%s\n" % fileContents).printResult()
 
 else:
