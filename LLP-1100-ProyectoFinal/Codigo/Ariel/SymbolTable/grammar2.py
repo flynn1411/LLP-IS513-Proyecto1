@@ -8,7 +8,7 @@ grammar = """
 
 ?start: exp+ 
     ?exp: IDENTIFIER "=" expresion ";" -> assigvar
-        | "console" "." "log" "(" expresion ")" ";"
+        | "console" "." "log" "(" expresion ")" ";" -> print
         | "console" "." "error" "(" expresion ")" ";" -> printerr
         | "function" IDENTIFIER "(" parameters ")" "{" instructions "}" -> savefun
         | ifs     

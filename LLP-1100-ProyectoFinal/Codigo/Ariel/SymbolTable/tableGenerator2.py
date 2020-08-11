@@ -16,10 +16,11 @@ from Grammar import *
 class TableGenerator2(Transformer):
     
 #! Constructor 
-    def __init__(self):
+    def __init__(self, mode ="Execution"):
     #?Contenedores 
         self.variables = {}
         self.functions = {}
+        self.mode = mode
         self.returnValue = None
 
 #! Asignar valores a una variable 
@@ -28,22 +29,24 @@ class TableGenerator2(Transformer):
         varInfo = self.tokenize(self.parseToken(value))
 
         if varInfo:
-            self.variables[name.value] = varInfo
+            #print("Nombre:\t%s"%name)
+            self.variables[name] = varInfo
         
         return name
 
 #! console.log de Java script
     def print(self,*item):
+        if(self.mode=="Execution"):
 
-        item = "%s"%item
+            item = "%s"%item
 
-    #Verifica el tipo de variable 
-        item,typeVal = self.parseToken(item)
+        #Verifica el tipo de variable 
+            item,typeVal = self.parseToken(item)
 
-        if (typeVal == "STRING"):
-            print(self.cleanParam(item))
-        else:
-            print(item)
+            if (typeVal == "STRING"):
+                print(self.cleanParam(item))
+            else:
+                print(item)
 
     def concat(self, var1, var2):
         
@@ -63,16 +66,18 @@ class TableGenerator2(Transformer):
 #! console.err de JavaScript
     def printerr(self,item):
 
-        item = "%s"%item
+        if(self.mode == "Execution"):
 
-    #Verifica el tipo de variable 
-        item,typeVal = self.parseToken(item)
+            item = "%s"%item
 
-    #Color a los print
-        if (typeVal == "STRING"):
-            print("\033[1;31;1m %s \033[0m" %self.cleanParam(item))
-        else:
-            print("\033[1;31;1m %s \033[0m" %item)
+        #Verifica el tipo de variable 
+            item,typeVal = self.parseToken(item)
+
+        #Color a los print
+            if (typeVal == "STRING"):
+                print("\033[1;31;1m %s \033[0m" %self.cleanParam(item))
+            else:
+                print("\033[1;31;1m %s \033[0m" %item)
 
 #! Comparar si dos valores son iguales 
     def equal(self,valueA,valueB):
@@ -185,6 +190,8 @@ class TableGenerator2(Transformer):
 #! Verificador de variables 
     def parseToken(self,value):
         
+        ##print(value)
+
         #? Verifica enteros o Floantes 
         if ((type(value) == float) or (type(value) == int) or (re.match(r"\d+(\.\d+)?",value))):
             return (float(value),"FLOAT")
@@ -229,7 +236,7 @@ class TableGenerator2(Transformer):
             value, _ = self.parseToken(name)
             return value
 
-        return self.variables[name]
+        return self.variables[name]["value"]
 
 #! Limpiar caracteres incesesarios de una cadena  
     def cleanParam(self, param):

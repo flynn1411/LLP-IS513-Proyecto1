@@ -12,7 +12,7 @@ f = open(fileName,"r")
 fileContents = f.read()
 f.close()
 
-tableGen = TableGenerator2()
+tableGen = TableGenerator2("Table")
 parser = Lark(grammar, parser="lalr", transformer=tableGen)
 
 #try:
@@ -52,8 +52,9 @@ for key in tableGen.variables.keys():
 
     row.append(tableGen.variables[key]["value"])
     row.append(tableGen.variables[key]["type"])
+    row.append(0)
 
     table.append(row)
 
 
-print(tabulate(table, headers=["Nombre", "Lineas", "Valor", "Tipo de Dato"]))
+print(tabulate(table, headers=["Nombre", "Lineas", "Valor", "Tipo de Dato","Función"]))
