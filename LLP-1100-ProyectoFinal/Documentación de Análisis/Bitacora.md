@@ -529,23 +529,38 @@ Finalmente, se creó un repositorio en GitHub para tener lista la estructura de 
 
 ## *Lunes 03/08/2020:*
 
-Durante el fin de semana, se realizaron investigaciones por parte de cada integrante con respecto a los diferentes lenguajes de programación enlistados en los objetivos del proyecto. Posterior a la clase sincróna de Lenguajes de Programación, se sostuvo una reunión sincróna para comunicar avances en cuanto a la investigación que realizó cada integrante del equipo. También se comenzó a crear la gramática e implementar ciertos aspectos del programa. (Cortés y Grabiel escriban lo que deseen)
+Durante el fin de semana, se realizaron investigaciones por parte de cada integrante con respecto a los diferentes lenguajes de programación enlistados en los objetivos del proyecto. Posterior a la clase sincróna de Lenguajes de Programación, se sostuvo una reunión sincróna para comunicar avances en cuanto a la investigación que realizó cada integrante del equipo. También se comenzó a crear la gramática e implementar ciertos aspectos del programa.
+
+Las primeras tareas a realizar fueron el agregado de las librerías necesarias para la ejecución de Lark, además se añaden los programas principales como el main y reader encargados de leer el archivo y ejecutar el analizador.
+
+ Se construyeron las bases de la gramática y semántica de JavaScript. Se hizo uso de los ejemplos realizados durante las clases síncronas. Algunos elementos declarados en la gramática fueron las operaciones aritméticas, las asignaciones y las impresiones de consola. 
+
+La gramática de asignación permite la relación de un nombre de variable con un átomo. Un átomo es todo aquel elemento terminal existente en el programa. Los átomos declarados en la gramática son identificadores, cadenas o enteros. Se hace uso de la semántica para hacer un filtro entre las palabras reservadas y los identificadores. Valores como “null”, “false” y “true” serán determinados como identificadores pero durante el análisis semántico serán catalogados como palabras reservadas con un valor determinado. 
+
 
 ## *Martes 04/08/2020:*
 
-Durante la reunión sincrónica, [^2] [^3] se siguió trabajando en los objetivos de cada integrante, se comenzó a probar la gramática y los avances de cada integrante. (Cortés y Gabriel pongan aqui de lo que se acuerden).
+Durante la reunión sincrónica, [^2] [^3] se siguió trabajando en los objetivos de cada integrante, se comenzó a probar la gramática y los avances de cada integrante. 
+
+Se empezó a realizar la investigación para generar la gramática de una función en JavaScript. Para la implementación de funciones fue necesario la creación de un subprograma. El subprograma será encargado de ejecutar las instrucciones cuando la función sea llamada. A través de la misma metodología fueron diseñados los bloques de condiciones. Para las declaraciones condicionales fue necesario crear las operaciones condicionales las cuales son encargadas de retornar un valor verdadero o falso de acuerdo a la proposición planteada. También se realizó la gramática para el reconocimiento de comentarios de una línea.
 
 ## *Miercoles 05/08/2020:*
 
 Se siguió avanzado de manera individual en las tareas de cada estudiante y se creó la bitacora de avances del proyecto. Ana terminó la gramática de Bash.
 
+Se agregó la gramática necesaria para la impresión de errores en JavaScript. También se comenzó a construir la gramática de las declaraciones en bucle.  Se usó el mismo enfoque de subprograma planteado el día anterior para la ejecución de una instrucción dada una condición que debe ser evaluada en cada iteración. La primera declaración en bucle a trabajar fue el “for”.
+
 ## *Jueves 06/08/2020:*
 
 > Aquí se detallarán las actividades realizadas durante el día en cuestión.
 
+Dentro de la gramática de JavaScript se siguió trabajando en la gramática de la declaración for. Para esto fue necesario construir la gramática de los acumuladores. También se arreglaron algunos errores que se presentaban en los cierres de las llaves dentro de varios bloques de ejecución.
+
 ## *Viernes 07/08/2020:*
 
 > Aquí se detallarán las actividades realizadas durante el día en cuestión.
+
+Se realizó la gramática para los bucles “while” bajo la misma metodología de subprograma. También se agregó el uso de los “returns” en las funciones haciendo que detuviera su ejecución y retornara un determinado valor.
 
 ## *Sábado 08/08/2020:*
 
@@ -558,6 +573,8 @@ Se siguió avanzado de manera individual en las tareas de cada estudiante y se c
 ## *Lunes 10/08/2020:*
 
 > Aquí se detallarán las actividades realizadas durante el día en cuestión.
+
+Se agregó la gramática de declaración condicional de una línea en JavaScript. Se realizaron pruebas para determinar la correcta ejecución de todas las reglas gramaticales presentes hasta el día. Además se añadieron funcionalidades extras como impresión con más de un color catalogado como impresión RGB el cual mejora el rendimiento del parser en un 150%. 
 
 ## *Martes 11/08/2020:*
 
