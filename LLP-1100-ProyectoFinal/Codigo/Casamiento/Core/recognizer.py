@@ -9,8 +9,8 @@ class Recognizer:
     def __init__(self):
         self.fileContents = ""
         self.header = [
-            ["Intérprete de Lenguajes ILANG"],
-            ["@authors: Ana Hernández, Fernando Córtes, Gabriel Escobar, Josué Izaguirre (Dream Team)"],
+            ["Intérprete de Lenguajes Rosetta"],
+            ["@authors:\nAna Hernández(its_anaehm),\nFernando Córtes(Ferloxc),\nGabriel Escobar(Lersgeeb),\nJosué Izaguirre (flynn1411)"],
             ["@version: 0.1.0"],
             ["@fecha: 16/08/2020"]
             ]
@@ -47,6 +47,6 @@ class Recognizer:
 
     def printResult(self):
         print("\n"*2)
-        print(tabulate(self.header, stralign="center", tablefmt="fancy_grid"))
+        print(tabulate(self.header, tablefmt="fancy_grid"))
         print("\n"*2)
         print(tabulate(self.result, stralign="left", tablefmt="grid"))

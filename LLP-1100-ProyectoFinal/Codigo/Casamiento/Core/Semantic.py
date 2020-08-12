@@ -7,7 +7,7 @@
 """
 import random
 import re
-from Core.lark import Lark,Transformer,v_args
+from Core.lark import Lark,Transformer,v_args, Token
 from Core.Grammars.javaScript import *
 
 @v_args(inline=True)
@@ -23,15 +23,22 @@ class Semantic(Transformer):
         self.returnValue = None
         self.rgb = rgb
         self.mode = mode
-   
+        self.scope = "Global"
+        self.variableTable = {}
+
 #! Assignar valores a una variable 
     def assigvar(self,name,value):
+
     #Verifica el tipo de variable 
         value,typeVal = self.parseToken(value)
+
         if (typeVal == "string"):
-            self.variables[name] = self.cleanParam(value)
-        else:
-            self.variables[name] = value
+            value = self.cleanParam(value)
+            
+        self.variables[name] = value
+
+        if not self.mode:
+            self.variableTable[name] = {"value":value, "scope":self.scope, "calls": []}
         
         return name
 
@@ -49,7 +56,7 @@ class Semantic(Transformer):
                 print(item)
 
     def concat(self, var1, var2):
-       
+    
         if var1 in self.variables.keys():
             var1 = self.variables[var1]
         else:
@@ -201,7 +208,6 @@ class Semantic(Transformer):
 
 #! Verificador de variables 
     def parseToken(self,value):
-        
         #? Verifica enteros o Floantes 
         if ((type(value) == float) or (type(value) == int) or (re.match(r"\d+(\.\d+)?",value))):
             return (float(value),"float")
@@ -233,6 +239,9 @@ class Semantic(Transformer):
             value, _ = self.parseToken(name)
             return value
 
+        if not self.mode:
+            pass 
+        
         return self.variables[name]
 
 #! Limpiar caracteres incesesarios de una cadena  
@@ -331,7 +340,9 @@ class Semantic(Transformer):
     #? Ejecutar las instrucciones
         
         try:
+            self.scope = name.value
             self.subProgram(text)
+            self.scope = "Global"
         except Exception as e:
 
             if ("%s" % e == 'Exit'):
@@ -366,11 +377,10 @@ class Semantic(Transformer):
             self.subProgram(ifInstructions)
         else:
             #? Ejecutar instrucciones del Else
-             self.subProgram(elseInstructions)
+            self.subProgram(elseInstructions)
 
 #! Subprograma para ejecutar instrucciones
     def subProgram(self,text):
-        
         
         #? llamado recursivo
         parser = Lark(grammar,parser="lalr",transformer=self)
@@ -384,13 +394,15 @@ class Semantic(Transformer):
                 raise Exception("Exit")
             else:
                 print("subError: %s" % e)
+        finally:
+            self.scope = "Global"
 
 #! While
     
     def whilestmt(self,condition,instruccion):
 
         if type(condition) == tuple:
-           
+        
             var = condition[0]
             con = condition[1]
             var2 = condition[2]
