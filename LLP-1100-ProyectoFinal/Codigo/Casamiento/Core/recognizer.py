@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-"""
-Poner comentarios aquí
-"""
 from Core.lark import Lark
 from tabulate import tabulate
 
+"""
+! Clase que reconoce gramáticas
+? Obtiene los contenidos de un archivo y reconoce gramáticalmente si es Ruby o Bash.
+? Retorna una impresión en pantalla determinando si ´detectó o nó el algún lenguaje de programación
+"""
 class Recognizer:
     def __init__(self):
         self.fileContents = ""
@@ -16,6 +18,11 @@ class Recognizer:
             ]
         self.result = []
 
+    """
+    ! Método para reconocer lenguajes de manera gramátical
+    ? Obtiene los contenidos de un archivo para poder determinar el lenguaje del archivo.
+    ? Prueba los distíntos casos para saber si es o no un lenguaje aceptado.
+    """
     def recognize(self, fileContents):
         self.fileContents = fileContents
         rubyParser = Lark.open("Core/Grammars/ruby.lark", "lalr")
@@ -38,6 +45,10 @@ class Recognizer:
 
         return self
 
+    """
+    ! Método para analizar gramáticalmente un texto
+    ? Recibe un parser con una gramática en específico. De existir gramática desconocida, se devuelve Falso, de lo contrario verdadero. 
+    """
     def checkWithParser(self, parser):
         try:
             parser.parse(self.fileContents)
@@ -45,6 +56,9 @@ class Recognizer:
         except Exception:
             return False
 
+    """
+    ! Método que imprime los resultados del reconocimiento gramátical
+    """
     def printResult(self):
         print("\n"*2)
         print(tabulate(self.header, tablefmt="fancy_grid"))

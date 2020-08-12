@@ -19,20 +19,6 @@ booleano = true;
 hola = "3";
 console.log(cadena);
 
-function factorial(n){
-    if(n<2){
-        return 1;
-    }
-    return n*factorial(n-1);
+for(i = 0; i < b; i++){
+	console.error("Error");
 }
-
-while(booleano){
-    a = 5;
-    booleano = false;
-}
-
-fact = factorial(5);
-
-console.log(fact);
-//No tiene punto y coma, por lo que fallará
-var2 = 5;
