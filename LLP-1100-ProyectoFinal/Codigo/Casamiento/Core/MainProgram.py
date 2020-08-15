@@ -72,7 +72,7 @@ version 0.1  16-08-2020
 				
 			#Caso desconocido
 			else:
-				print("Error: Argumentos no válidos.\nIngrese \"--help\" si desea conocer los comandos disponibles.")
+				print("Error: Argumentos no válidos.\nIngrese \"--help\" si desea conocer los comandos disponibles.\n")
 
 		elif len(arguments) == 2:
 			#verificar parámetros
@@ -102,4 +102,4 @@ version 0.1  16-08-2020
 				(JavaScript(rgb=True)).runCode(fileContents)
 
 		else:
-			print("Error: Argumentos no válidos.\nIngrese \"--help\" si desea conocer los comandos disponibles.")
+			print("Error: Argumentos no válidos.\nIngrese \"--help\" si desea conocer los comandos disponibles.\n")

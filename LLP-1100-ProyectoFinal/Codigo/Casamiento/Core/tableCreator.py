@@ -105,9 +105,16 @@ class TableCreator:
 
         result = ""
 
+        i = 0
+
         for item in cleanedList:
             result = "%s %s"%(result, item)
             #print(result)
+
+            if(i < (len(cleanedList)-1)):
+                result += ","
+            
+            i += 1
 
         return result
 
@@ -191,7 +198,7 @@ class TableCreator:
     def printTable(self):
         print("\n"*2)
         print(tabulate(self.header, tablefmt="fancy_grid"))
-        print("\n\t\t\t\tTabla de Símbolos\n")
+        print("\n\t\t\t\t\tTabla de Símbolos\n")
         print(
             tabulate(
                 self.symbolTable,
@@ -202,3 +209,4 @@ class TableCreator:
                 numalign="center"
             )
         )
+        print("\n")

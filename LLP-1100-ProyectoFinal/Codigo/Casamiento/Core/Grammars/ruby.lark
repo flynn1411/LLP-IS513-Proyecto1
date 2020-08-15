@@ -5,7 +5,7 @@
 // * Declaración y Ejecición de Funciones
 // * Estructuras de control: if, while, for
 // @author: flynn1411
-// @version: 0.3
+// @version: 0.5 (Agregadas las cadenas con formato)
 // @date: 04/08/2020
 
 
@@ -59,11 +59,34 @@
 ?expression: arithmeticexpression
     | booleanexpression
     | null
+    | stringmethods
+
+//Métodos que pueden ser utilizados en cadenas de texto
+?stringmethods: string ".capitalize"
+    | string ".upcase" 
+    | string ".downcase"
+    | string ".length"
+    | string ".reverse"
+    | string ".empty?"
+    | string ".swapcase"
+    | string ".split" ( "(" string ")" )?
+    | string ".chomp"
+    | string ".chop"
+    | string ".strip"
+    | string ".clear"
+    | string ".to_i"
+    | string ".index" "(" string  ("," string )? ")"
+    | string ".count" "(" string ")"
+    | string ".gsub" "(" string "," string ")"
+    | string ".concat" string
+    | string ".insert" "(" number "," string ")"
 
 //Definición de expresión booleana
 ?booleanexpression: booleanatom
     | expression relationalop expression
     | arithmeticexpression compareop arithmeticexpression
+    | ("not" | !) expression
+    | 
 
 //Definición de suma y resta
 ?arithmeticexpression: term
@@ -81,6 +104,8 @@
     | string
     | "(" arithmeticexpression ")"
     | functioncall
+    | stringmethods
+    | string "%" "[" expression ( "," expression )* "]"
 
 // **TERMINALES**
 
@@ -102,9 +127,10 @@
 ?addsub: "+"
     | "-"
 
-//Operadores de multiplicación o división
+//Operadores de multiplicación o división y modulo
 ?multdiv: "*"
     | "/"
+    | "%"
 
 //Operadores de comparación
 ?compareop: "<"
@@ -115,10 +141,13 @@
 //Operadores de realción
 ?relationalop: "=="
     | "!="
+    | "and"
+    | "or"
+    | "||"
 
 //Literal de boleano
-?booleanatom: /True/
-    |  /False/
+?booleanatom: /true/
+    |  /false/
 
 //Literal de nulo
 ?null: /nil/

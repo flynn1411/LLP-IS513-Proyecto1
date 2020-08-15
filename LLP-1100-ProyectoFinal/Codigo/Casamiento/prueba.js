@@ -19,6 +19,20 @@ booleano = true;
 hola = "3";
 console.log(cadena);
 
-for(i = 0; i < b; i++){
-	console.error("Error");
+function factorial(n){
+	este = "variable interna";
+	if (n < 2){
+		return 1;
+	}
+
+	return n*factorial(n-1);
 }
+
+function imprimirFactorial(n, fact){
+	message = "El factorial de ";
+	message2 = " es: ";
+
+	console.log(message, n ,message2, fact);
+}
+
+imprimirFactorial(b, factorial(b));
