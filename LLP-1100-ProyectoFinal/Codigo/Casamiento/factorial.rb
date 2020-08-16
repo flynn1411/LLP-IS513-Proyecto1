@@ -15,6 +15,4 @@ end
 
 n = 5
 
-print ("El factorial de ")
-
-puts factorial(n)
+puts ("El factorial en Ruby para '%d' es: %d" % [n, factorial(n)])
