@@ -84,12 +84,12 @@ class Semantic(Transformer):
 
         #Color a los print
             if(item == "Authors"):
-                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"Nombre\t\t|\tNumero de cuenta"))
-                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"-"*40))
-                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"Ana Hernández\t|\t20171001620"))
-                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"Fernando Cortés\t|\t20171030809"))
-                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"Gabriel Escobar\t|\t20181005735"))
-                print("\033[1;%s;40m%s \033[0m" %(random.choice(array),"Josue Izaguirre\t|\t20171034157"))
+                print("\033[1;%s;50m%s \033[0m" %(random.choice(array),"Nombre\t\t|\tNumero de cuenta"))
+                print("\033[1;%s;50m%s \033[0m" %(random.choice(array),"-"*40))
+                print("\033[1;%s;50m%s \033[0m" %(random.choice(array),"Ana Hernández\t|\t20171001620"))
+                print("\033[1;%s;50m%s \033[0m" %(random.choice(array),"Fernando Cortés\t|\t20171030809"))
+                print("\033[1;%s;50m%s \033[0m" %(random.choice(array),"Gabriel Escobar\t|\t20181005735"))
+                print("\033[1;%s;50m%s \033[0m" %(random.choice(array),"Josue Izaguirre\t|\t20171034157"))
                 
             
             elif (typeVal == "string"):

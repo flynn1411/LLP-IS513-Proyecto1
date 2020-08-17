@@ -43,14 +43,14 @@ python3 main.py  <filePath> : Ejecutar código de JavaScript dada la ruta a un a
 \t\t [--rgb-mode] <filePath> : Ejecutar código de JavaScript dada la ruta a un archivo, con un toque de colores.\n
 \t\t [--symbols-table] <filePath> : Mostrar la tabla de símbolos generada internamente para la ejecución de código JavaScript, dada la ruta hacía un archivo.\n
 \t\t [--what-language-is-this] <filePath> : Detectar gramáticalmente el lenguaje de programación de un software, dada la ruta hacía un archivo (solo detecta Ruby y Bash).\n
-\t\t [--version] : Muestra la información sobre el programa.
+\t\t [--info] : Muestra la información sobre el programa.
 				""")
 
 			#Caso para mostrar los autores y sobre el programa
-			elif re.match(r"--version",arguments[0]):
+			elif re.match(r"--info",arguments[0]):
 
 				#Arte ASCII creado en: https://onlineasciitools.com/convert-text-to-ascii-art
-				print("""
+				arte = """
 ............................................................................
 ::'########:::'#######:::'######::'########:'########:'########::::'###:::::
 :: ##.... ##:'##.... ##:'##... ##: ##.....::... ##..::... ##..::::'## ##::::
@@ -59,14 +59,16 @@ python3 main.py  <filePath> : Ejecutar código de JavaScript dada la ruta a un a
 :: ##.. ##::: ##:::: ##::..... ##: ##...::::::: ##::::::: ##:::: #########::
 :: ##::. ##:: ##:::: ##:'##::: ##: ##:::::::::: ##::::::: ##:::: ##.... ##::
 :: ##:::. ##:. #######::. ######:: ########:::: ##::::::: ##:::: ##:::: ##::
-::..:::::..:::.......::::......:::........:::::..::::::::..:::::..:::::..:::
+::..:::::..:::.......::::......:::........:::::..::::::::..:::::..:::::..:::"""
+
+				print("""\033[1;36;50m%s\033[0m
 +-+-+-+-+-+-+-+-+-+-+-+-+
 version 0.1  16-08-2020
 +-+-+-+-+-+-+-+-+-+-+-+-+
 ========================================
 		Authors
 ========================================
-					""")
+"""%arte)
 				(JavaScript()).runCode("console.error(\"Authors\");")
 				print("\n"*2)
 				
@@ -100,6 +102,9 @@ version 0.1  16-08-2020
 			):
 				fileContents = (FileReader()).readFile(fileName)
 				(JavaScript(rgb=True)).runCode(fileContents)
+			
+			else:
+				print("Error: Argumentos no válidos.\nIngrese \"--help\" si desea conocer los comandos disponibles.\n")
 
 		else:
 			print("Error: Argumentos no válidos.\nIngrese \"--help\" si desea conocer los comandos disponibles.\n")

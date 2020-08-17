@@ -1,23 +1,15 @@
-hola = "Mundo";
+a = "Hola";
+b = " Mundo";
+a = 1;
+suma = a + 1;
 
-numero = 2.43;
 
-a = 4;
 
-b = 5;
 
-cadena = "Esta es una cadena";
 
-numero = "ahora es una cadena";
-
-cadena = a;
-
-cadena = a + b;
-
-booleano = true;
-
-hola = "3";
-console.log(cadena);
+for(i=0;i<3;i++){
+	console.error("Bienvenido a ROSETTA");
+}
 
 function factorial(n){
 	este = "variable interna";
@@ -35,4 +27,4 @@ function imprimirFactorial(n, fact){
 	console.log(message, n ,message2, fact);
 }
 
-imprimirFactorial(b, factorial(b));
+imprimirFactorial(5, factorial(5));

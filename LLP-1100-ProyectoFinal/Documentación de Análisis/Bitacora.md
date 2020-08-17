@@ -32,7 +32,7 @@
           - [Tipo](#tipo)
   - [Lluvia de Ideas](#lluvia-de-ideas)
   - [Bitácora](#bitácora)
-    - [*Miercóles 29/07/2020:*](#miercóles-29072020)
+  - [*Miercóles 29/07/2020:*](#miercóles-29072020)
   - [*Lunes 03/08/2020:*](#lunes-03082020)
   - [*Martes 04/08/2020:*](#martes-04082020)
   - [*Miercoles 05/08/2020:*](#miercoles-05082020)
@@ -501,7 +501,7 @@ En esta sección se detallan las metas propuestas, avances y logros que se obtuv
 
 ### *Miercóles 29/07/2020:*
 
-Se tuvo la primera reunión de equipo[^1] [^2] para discusión de proyecto donde también se realizó detenidamente la lectura de todos los requerimientos y objetivos del proyecto. Asimismo se realizó una lista con los objetivos principales para el funcionamiento adecuado del programa, para lo que se distribuyeron las diferentes asignaciones entre los integrantes.
+Se tuvo la primera reunión de equipo [^1] [^2] para discusión de proyecto donde también se realizó detenidamente la lectura de todos los requerimientos y objetivos del proyecto. Asimismo se realizó una lista con los objetivos principales para el funcionamiento adecuado del programa, para lo que se distribuyeron las diferentes asignaciones entre los integrantes.
 
 Los objetivos iniciales fueron los siguientes (con fecha deseada de finalización para el viernes 07 de agosto):
 
@@ -533,7 +533,7 @@ Durante el fin de semana, se realizaron investigaciones por parte de cada integr
 
 Las primeras tareas a realizar fueron el agregado de las librerías necesarias para la ejecución de Lark, además se añaden los programas principales como el main y reader encargados de leer el archivo y ejecutar el analizador.
 
- Se construyeron las bases de la gramática y semántica de JavaScript. Se hizo uso de los ejemplos realizados durante las clases síncronas. Algunos elementos declarados en la gramática fueron las operaciones aritméticas, las asignaciones y las impresiones de consola. 
+Se construyeron las bases de la gramática y semántica de JavaScript. Se hizo uso de los ejemplos realizados durante las clases síncronas. Algunos elementos declarados en la gramática fueron las operaciones aritméticas, las asignaciones y las impresiones de consola. 
 
 La gramática de asignación permite la relación de un nombre de variable con un átomo. Un átomo es todo aquel elemento terminal existente en el programa. Los átomos declarados en la gramática son identificadores, cadenas o enteros. Se hace uso de la semántica para hacer un filtro entre las palabras reservadas y los identificadores. Valores como “null”, “false” y “true” serán determinados como identificadores pero durante el análisis semántico serán catalogados como palabras reservadas con un valor determinado. 
 
