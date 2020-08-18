@@ -61,8 +61,6 @@
   - [*Martes 11/08/2020:*](#martes-11082020)
   - [*Miercoles 12/08/2020:*](#miercoles-12082020)
   - [*Jueves 13/08/2020:*](#jueves-13082020)
-  - [*Viernes 14/08/2020:*](#viernes-14082020)
-  - [*Sábado 15/08/2020:*](#sábado-15082020)
   - [*Domingo 16/08/2020:*](#domingo-16082020)
   - [Anexos y Evidencias Fotográficas](#anexos-y-evidencias-fotográficas)
   - [Notas](#notas)
@@ -80,7 +78,7 @@ Investigación sobre el Lenguaje de Programación **Ruby**
 
 #### ***Sobre Ruby***
 
-Ruby es un lenguaje de programación orientado a objetos y multiprpósito. Contiene una sintáxis más natural a la de otros lenguajes como [C/C++](https://www.cplusplus.com/) ó [JAVA](https://www.java.com/en/). Su implementación es a través de interpretación, por lo que su ejecución puede ser lenta en comparación a lenguajes compilados. Su uso se destaca en la web, donde se puede trabajar en Front-End o Back-End; no obstante, es capáz de ser utilizado en aplicaciones de escritorio utilizando librerías como GTK u OpenGL.
+Ruby es un lenguaje de programación orientado a objetos y multipropósito. Contiene una sintáxis más natural a la de otros lenguajes como [C/C++](https://www.cplusplus.com/) ó [JAVA](https://www.java.com/en/). Su implementación es a través de interpretación, por lo que su ejecución puede ser lenta en comparación a lenguajes compilados. Su uso se destaca en la web, donde se puede trabajar en Front-End o Back-End; no obstante, es capáz de ser utilizado en aplicaciones de escritorio utilizando librerías como GTK u OpenGL.
 
 ---
 
@@ -290,7 +288,7 @@ Entre las opercaciones disponibles se encuentran las:
     *= | Multiplicarle al valor actual de la variable.
     /= | Dividirle al valor actual de la varible.
     %= | Realizar modulo al valor actual de la variable.
-    ** | Realizar operación de exponente al valor actual de la variable.
+    **= | Realizar operación de exponente al valor actual de la variable.
 
 ---
 
@@ -361,7 +359,7 @@ end
 
 ### ***JavaScript***
 
-[^4].
+<sup>[[4]](###4:)</sup>.
 
 ---
 
@@ -802,7 +800,7 @@ En esta sección se detallan las metas propuestas, avances y logros que se obtuv
 
 ### *Miercóles 29/07/2020:*
 
-Se desarrollo la primera reunión del equipo[^1] [^2] en la cual se realizó la discusión de proyecto y se dío lectura a todos los requerimientos y objetivos del proyecto. De la misma manera se construyó una lista con los objetivos principales para el funcionamiento adecuado del programa y que también contendría la distribución de las diferentes asignaciones entre los integrantes del equipo.
+Se desarrollo la primera reunión del equipo <sup>[[1]](###1:)</sup> <sup>[[2]](###2:)</sup> en la cual se realizó la discusión de proyecto y se dío lectura a todos los requerimientos y objetivos del proyecto. De la misma manera se construyó una lista con los objetivos principales para el funcionamiento adecuado del programa y que también contendría la distribución de las diferentes asignaciones entre los integrantes del equipo.
 
 Los objetivos iniciales fueron los siguientes (con fecha deseada de finalización para el viernes 07 de agosto):
 
@@ -841,7 +839,7 @@ La gramática de asignación permite la relación de un nombre de variable con u
 
 ## *Martes 04/08/2020:*
 
-Durante la reunión sincrónica, [^2] [^3] se siguió trabajando en los objetivos de cada integrante de la misma forma comenzaron las pruebas del funcionamiento de las gramáticas y los avances de cada miembro del equipo.
+Durante la reunión sincrónica, <sup>[[2]](###2:)</sup> <sup>[[3]](###3:)</sup> se siguió trabajando en los objetivos de cada integrante de la misma forma comenzaron las pruebas del funcionamiento de las gramáticas y los avances de cada miembro del equipo.
 
 Dondo inicio a la investigación para generar la gramática de una función en JavaScript; para la implementación de funciones fue necesario la creación de un subprograma. El subprograma será encargado de ejecutar las instrucciones cuando la función sea llamada. A través de la misma metodología fueron diseñados los bloques de condiciones. Para las declaraciones condicionales fue necesario crear las operaciones condicionales las cuales son encargadas de retornar un valor verdadero o falso de acuerdo a la proposición planteada. También se realizó la gramática para el reconocimiento de comentarios de una línea.
 
@@ -853,49 +851,40 @@ Agregando también la gramática necesaria para la impresión de errores en Java
 
 ## *Jueves 06/08/2020:*
 
-> Aquí se detallarán las actividades realizadas durante el día en cuestión.
-
 Dentro de la gramática de JavaScript se siguió trabajando en la gramática de la declaración for. Para esto fue necesario construir la gramática de los acumuladores. También se arreglaron algunos errores que se presentaban en los cierres de las llaves dentro de varios bloques de ejecución.
 
 ## *Viernes 07/08/2020:*
 
-> Aquí se detallarán las actividades realizadas durante el día en cuestión.
+La funcionalidad de reconocimiento de lenguajes fue completada y probada con las gramáticas de los lenguajes Bash y Ruby. No obstante, aún queda cierta optimización o agregados que debían hacerse a las gramáticas a medida se fueran probando distintos casos en el programa ejemplo. Fue en este punto donde se comienza a probar todo el programa a través de un main.py (creado días atrás) en la carpeta "Casamiento" <sup>[[5]](###5:)</sup> siguiendo las especificaciones del proyecto. Al finalizar la funcionalidad de reconocimiento, se comenzó a trabajar en la tabla de símbolos.
 
 Se realizó la gramática para los bucles “while” bajo la misma metodología de subprograma. También fue agregado el uso de los “returns” en las funciones haciendo que detuviera su ejecución y retornara un determinado valor.
 
 ## *Sábado 08/08/2020:*
 
-> Aquí se detallarán las actividades realizadas durante el día en cuestión.
+De manera breve se trabajó en la generación de la tabla de símbolos. Logrando el procesamiento de cierta (no toda) la información sobre las variables durante la ejecución del programa.
+
 
 ## *Domingo 09/08/2020:*
 
-Durante este día no se realizarón avances en el proyecto ya que los miembros del equipo debían cumplir con el resto de sus asignaciones en la carga académica.
+Durante este día no se realizaron avances en el proyecto ya que los miembros del equipo debían cumplir con el resto de sus asignaciones en la carga académica.
 
 ## *Lunes 10/08/2020:*
 
-> Aquí se detallarán las actividades realizadas durante el día en cuestión.
+La generación de la tabla de símbolos se logró completar y se agregó a la funcionalidad main.py junto con la ejecución de código JavaScript.
 
 Se agregó la gramática de declaración condicional de una línea en JavaScript. Se realizaron pruebas para determinar la correcta ejecución de todas las reglas gramaticales presentes hasta el día. Además se añadieron funcionalidades extras como impresión con más de un color catalogado como impresión RGB el cual mejora el rendimiento del parser en un 150%.
 
 ## *Martes 11/08/2020:*
 
-> Aquí se detallarán las actividades realizadas durante el día en cuestión.
+A manera tener un mejor orden del funcionamiento del programa, se creó la clase (y archivo) MainProgram.py en la carpeta "Core", en donde recibe un arreglo de argumentos y los procesa para llamar a las clases necesarias cuando se les requiera. Con esto, main.py solo le envia a MainProgram los argumentos ingresados por el usuario y deja que este los procese. Se tomó la decisión de colocarle al programa el nombre de "Rosetta", en referencia a la Piedra de Rosetta <sup>[[6]](###6:)</sup> y se generó un arte ASCII <sup>[[7]](###7:)</sup> con el nombre del programa para cierta funcionalidad.
 
 ## *Miercoles 12/08/2020:*
 
-> Aquí se detallarán las actividades realizadas durante el día en cuestión.
+Optimización y documentación de las clases MainProgram, JavaScript, Recognizer y TableGenerator.
 
 ## *Jueves 13/08/2020:*
 
 Durante este día no se realizarón avances en el proyecto ya que los miembros del equipo debían cumplir con el resto de sus asignaciones en la carga académica.
-
-## *Viernes 14/08/2020:*
-
-> Aquí se detallarán las actividades realizadas durante el día en cuestión.
-
-## *Sábado 15/08/2020:*
-
-> Aquí se detallarán las actividades realizadas durante el día en cuestión.
 
 ## *Domingo 16/08/2020:*
 
@@ -926,13 +915,35 @@ Se terminó de agregar los elementos faltantes a la documentación del análisis
 
 ## Notas
 
- [^1]: Todas las reuniones de forma sincróna por parte de los integrantes del equipo se realizaron a través de la plataforma Discord. (Colocar referencias). Para cualquier otra forma de comunicación, se creó un grupo de WhatsApp con el objetivo de reportar avances o definir reuniones sincrónas.
+ ### 1:
+Todas las reuniones de forma sincrónica por parte de los integrantes del equipo se realizaron a través de la plataforma Discord. Los canales de texto y voz fueron creados para el proyecto y ocultos a la vista de cualquier tercero. Para mantener la privacidad, se le permitió el acceso unicamente a los miembros del equipo a tráves de roles únicos (con el nombre "Lingüistas"). Para cualquier otra forma de comunicación, se creó un grupo de WhatsApp con el objetivo de reportar avances o definir reuniones sincrónas.
 
- [^2]: El intervalo de tiempo durante el cual se sostenían las reuniones de trabajo variaban entre las 11A.M. - 10P.M.
+![Permisos del rol "Lingüistas"](https://cdn.discordapp.com/attachments/739957930660593714/745005729903149196/unknown.png)
 
- [^3]: Variaba el tiempo de conexión entre cada estudiante de acuerdo a la diferente disposición horaria de cada estudi ante.
+![Miembros con el rol "Lingüistas"](https://cdn.discordapp.com/attachments/739957930660593714/745010333755637760/unknown.png)
 
- [^4]: Ya que los estudiantes contaban con una noción sobre los componentes de JavaScript previo a la realización del proyecto, no se realizó una investigación tan profunda con respecto al mismo.
+![Canal de Texto "proyecto"](https://cdn.discordapp.com/attachments/739957930660593714/745011703217127475/unknown.png)
+
+ ### 2:
+El intervalo de tiempo durante el cual se sostenían las reuniones de trabajo variaban entre las 11A.M. - 10P.M.
+
+ ### 3:
+Variaba el tiempo de conexión entre cada estudiante de acuerdo a la diferente disposición horaria de cada estudi ante.
+
+ ### 4:
+Ya que los estudiantes contaban con una noción sobre los componentes de JavaScript previo a la realización del proyecto, no se realizó una investigación tan profunda con respecto al mismo.
+
+ ### 5:
+El nombre "***Casamiento***" proviene del plato de comida típico de Honduras en el cual se mezcla el arroz y frijoles, junto con otros ingredientes, para obtener un solo platillo. Lo anterior sirve como analogía para hacer referencia a la unificación de códigos redactados por distintos integrantes del equipo.
+
+![Casamiento](https://www.recetashonduras.com/base/stock/Recipe/178-image/178-image_web.jpg)
+
+### 6:
+La Piedra de Rosetta es una piedra encontrada por el ejercito francés en 1799. Esta piedra contiene contiene el mismo mensaje en tres distintas formas de escritura, las cuales son hierático, griego antiguo y jeroglíficos egipcios. La importancia recae en este último sistema de escritura, ya que los jeroglíficos egipcios eran un sistema muerto el cual nadie podía entender más se encontraba en todos los sitios arqueológicos en Egipto. Por ende, la Piedra Rosetta fue una pieza clave en poder interpretar el lenguaje de jeroglíficos. Fue en base a este artefacto que se le decidió poner el nombre de Rosetta al programa del proyecto, haciendo referencia a su gran valor para interpretar distintos lenguajes. Más información sobre la Piedra de Rosetta [aqui](https://www.saberespractico.com/curiosidades/que-es-la-piedra-de-rosetta/).
+
+![Piedra de Rosetta](https://cursosnz.es/jonkcoches/wp-content/uploads/2019/04/708-2-1.jpg)
+
+
 
 ## Referencias Bibliográficas
 
