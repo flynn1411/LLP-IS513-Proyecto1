@@ -876,7 +876,7 @@ Se agregó la gramática de declaración condicional de una línea en JavaScript
 
 ## *Martes 11/08/2020:*
 
-A manera tener un mejor orden del funcionamiento del programa, se creó la clase (y archivo) MainProgram.py en la carpeta "Core", en donde recibe un arreglo de argumentos y los procesa para llamar a las clases necesarias cuando se les requiera. Con esto, main.py solo le envia a MainProgram los argumentos ingresados por el usuario y deja que este los procese. Se tomó la decisión de colocarle al programa el nombre de "Rosetta", en referencia a la Piedra de Rosetta <sup>[[6]](###6:)</sup> y se generó un arte ASCII <sup>[[7]](###7:)</sup> con el nombre del programa para cierta funcionalidad.
+A manera tener un mejor orden del funcionamiento del programa, se creó la clase (y archivo) MainProgram.py en la carpeta "Core", en donde recibe un arreglo de argumentos y los procesa para llamar a las clases necesarias cuando se les requiera. Con esto, main.py solo le envia a MainProgram los argumentos ingresados por el usuario y deja que este los procese. Se tomó la decisión de colocarle al programa el nombre de "Rosetta", en referencia a la Piedra de Rosetta <sup>[[6]](###6:)</sup> y se generó un arte ASCII con el nombre del programa para cierta funcionalidad.
 
 ## *Miercoles 12/08/2020:*
 
@@ -942,8 +942,6 @@ El nombre "***Casamiento***" proviene del plato de comida típico de Honduras en
 La Piedra de Rosetta es una piedra encontrada por el ejercito francés en 1799. Esta piedra contiene contiene el mismo mensaje en tres distintas formas de escritura, las cuales son hierático, griego antiguo y jeroglíficos egipcios. La importancia recae en este último sistema de escritura, ya que los jeroglíficos egipcios eran un sistema muerto el cual nadie podía entender más se encontraba en todos los sitios arqueológicos en Egipto. Por ende, la Piedra Rosetta fue una pieza clave en poder interpretar el lenguaje de jeroglíficos. Fue en base a este artefacto que se le decidió poner el nombre de Rosetta al programa del proyecto, haciendo referencia a su gran valor para interpretar distintos lenguajes. Más información sobre la Piedra de Rosetta [aqui](https://www.saberespractico.com/curiosidades/que-es-la-piedra-de-rosetta/).
 
 ![Piedra de Rosetta](https://cursosnz.es/jonkcoches/wp-content/uploads/2019/04/708-2-1.jpg)
-
-
 
 ## Referencias Bibliográficas
 
