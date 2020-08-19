@@ -918,11 +918,11 @@ Se terminó de agregar los elementos faltantes a la documentación del análisis
  ### 1:
 Todas las reuniones de forma sincrónica por parte de los integrantes del equipo se realizaron a través de la plataforma Discord. Los canales de texto y voz fueron creados para el proyecto y ocultos a la vista de cualquier tercero. Para mantener la privacidad, se le permitió el acceso unicamente a los miembros del equipo a tráves de roles únicos (con el nombre "Lingüistas"). Para cualquier otra forma de comunicación, se creó un grupo de WhatsApp con el objetivo de reportar avances o definir reuniones sincrónas.
 
-![Permisos del rol "Lingüistas"](https://cdn.discordapp.com/attachments/739957930660593714/745005729903149196/unknown.png)
+![Permisos del rol "Lingüistas"](https://raw.githubusercontent.com/flynn1411/LLP-IS513-Proyecto1/master/LLP-1100-ProyectoFinal/Documentaci%C3%B3n%20de%20An%C3%A1lisis/Imagenes/permisos.png?token=AJZB2U4NVJSVGDRZRU3V5F27HR3CI)
 
-![Miembros con el rol "Lingüistas"](https://cdn.discordapp.com/attachments/739957930660593714/745010333755637760/unknown.png)
+![Miembros con el rol "Lingüistas"](https://raw.githubusercontent.com/flynn1411/LLP-IS513-Proyecto1/master/LLP-1100-ProyectoFinal/Documentaci%C3%B3n%20de%20An%C3%A1lisis/Imagenes/miembros.png?token=AJZB2U4SNTDZZBA5CB3L5Y27HR25W)
 
-![Canal de Texto "proyecto"](https://cdn.discordapp.com/attachments/739957930660593714/745011703217127475/unknown.png)
+![Canal de Texto "proyecto"](https://raw.githubusercontent.com/flynn1411/LLP-IS513-Proyecto1/master/LLP-1100-ProyectoFinal/Documentaci%C3%B3n%20de%20An%C3%A1lisis/Imagenes/chat.png?token=AJZB2U22KBFTJN327JO7Q427HR3AK)
 
  ### 2:
 El intervalo de tiempo durante el cual se sostenían las reuniones de trabajo variaban entre las 11A.M. - 10P.M.
